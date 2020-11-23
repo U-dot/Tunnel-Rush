@@ -3,7 +3,8 @@ void drawTunnel(){
   camera(mouseX, height/2, (height/2) / tan(PI/6), 
           width/2, height/2, 0,
           0, 1, 0);
-  //camera();
+  //Descomentar el siguiente para ver el tunel desde afuera
+  camera();
   translate(width/2, height/2, -100+z);
   stroke(255);
   noFill();
@@ -11,11 +12,11 @@ void drawTunnel(){
     translate(0,0,-i*100);
     circle(0,0,10);
     translate(0,-70,0);
-    rotate(PI/theta);
-    polygon(0,0,100,6);
-    rotate(-PI/theta);
+    println("theta",theta);
+    rotate(radians(theta));
+    polygon(0,0,100,8);
+    rotate(-radians(theta));
     translate(0,70,0);
-    //box(200);
   }
 }
 
