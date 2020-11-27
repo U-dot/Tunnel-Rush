@@ -5,7 +5,8 @@ class Player{
   //Color
 //Constructor
 //Métodos/funciones
-  //Draw
+  //display
+  
   //void move(theta,change):theta+=change
   //print1
 

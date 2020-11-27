@@ -1,20 +1,23 @@
 void drawTunnel(){
+  
   //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-  camera(mouseX, height/2, (height/2) / tan(PI/6), 
-          width/2, height/2, 0,
-          0, 1, 0);
-  //Comentar el siguiente para ver el tunel desde afuera
-  camera();
-  translate(width/2, height/2, -100+z);
+  //camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  //Descomentar lo anterior para ver el tunel desde afuera
+  //camera
+  translate(width/2, height/2, z);
   stroke(255);
   noFill();
+  
   for(int i=0;i<10;i++){
     translate(0,0,-i*100);
-    circle( cos(radians(theta))*radius,
-            sin(radians(theta))*radius,
+    circle( cos(radians(theta))*playerRadius,
+            sin(radians(theta))*playerRadius,
             10);
-    polygon(0,0,radius+10,npolygon);
+    polygon(0,0,playerRadius+10,npolygon);
+    translate(0,0,i*100);
   }
+  
+  translate(-width/2, -height/2, -z);
 }
 
 void polygon(float x, float y, float apotema, int npoints) {
