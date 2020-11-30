@@ -6,7 +6,6 @@ class Player{
 //Constructor
 //Métodos/funciones
   //display
-  
   //void move(theta,change):theta+=change
   //print1
 

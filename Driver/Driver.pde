@@ -12,16 +12,13 @@ void setup() {
 }
 
 void draw() {
-  
   pageSelector();
   if (keyPressed){
     if (key==CODED){
-      if (keyCode==UP){
+      if (keyCode==LEFT){
         theta++;
-        tri.posZ++;
-      }else if (keyCode==DOWN){
+      }else if (keyCode==RIGHT){
         theta--;
-        tri.posZ--;
       }
       println("theta", theta, "tri.posZ",tri.posZ);
     }
@@ -31,10 +28,8 @@ void draw() {
 
 void gamePage(){
   background(0);
-  tri.display();
   drawTunnel();
-  
-  //tri.display();
+  tri.display();
   z++;
 }
 void pageSelector(){//Escoge la página
