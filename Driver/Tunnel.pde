@@ -1,6 +1,6 @@
 void drawTunnel() {
   //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-  camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  //camera(mouseX*2, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
   //Descomentar lo anterior para ver el tunel desde afuera
   push();
   translate(width/2, height/2, z);
@@ -13,7 +13,6 @@ void drawTunnel() {
     translate(0, 0, i*100);
   }
   pop();
-  //translate(-width/2, -height/2, -z);
 }
 
 void polygon(float x, float y, float apotema, int npoints) {
