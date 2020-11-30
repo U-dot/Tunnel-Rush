@@ -1,11 +1,11 @@
 int z = 0, page = 1;
 float theta = 1;
 int npolygon = 8; //Números de lados del polígono
-int playerRadius = height/3; //Radio de movimiento de los jugadores
+int playerRadius = height/2; //Radio de movimiento de los jugadores
 //Tamaño del polígono
 float angle = TWO_PI / npolygon;
 float polyRadius = playerRadius/cos(angle/2);
-//Obstacle tri = new Obstacle(2, 90);
+Obstacle tri = new Obstacle(10, 90,3);
 Player P1 = new Player();
 void setup() {
   size(500, 500, P3D);
@@ -28,7 +28,7 @@ void draw() {
 void gamePage() {
   background(0);
   drawTunnel();
-  //tri.display();
+  tri.display();
   z++;
 }
 
