@@ -7,37 +7,36 @@ void drawTunnel() {
   stroke(255);
   noFill();
   for (int i=-3; i<=lengthTunnel; i++) {
-    translate(0, 0, -i*100);
+    translate(0, 0, -i*distanceTunnel);
     circle( cos(radians(theta))*playerRadius, sin(radians(theta))*playerRadius, 10);
-    polygon(0, 0, playerRadius+10, npolygon);
-    translate(0, 0, i*100);
+    polygon( playerRadius+10, npolygon);
+    translate(0, 0, i*distanceTunnel);
   }
   pop();
 }
 
-void polygon(float x, float y, float apotema, int npoints) {
+void polygon( float apotema, int npoints) {
   float angle = TWO_PI / npoints;
   float radius=apotema/cos(angle/2);
   beginShape();
   for (float a = 0; a < TWO_PI; a += angle) {
-    float sx = x + cos(a) * radius;
-    float sy = y + sin(a) * radius;
+    float sx = cos(a) * radius;
+    float sy = sin(a) * radius;
     vertex(sx, sy);
   }
   endShape(CLOSE);
 }//A partir de ejemplo de Processing
 
-void polygon3D(float angle1,int type,int radius,int size) {
+void polygon3D(float angle1,int type,int radius,int size,int deepness) {
   float angle2 = TWO_PI / type;
-  float radiusPoly=size/2/cos(angle2/2);
+  float radiusPoly=size/cos(angle2/2);
   float x = cos(angle1)*radius;
   float y = sin(angle1)*radius;
   push();
   translate(x,y);
   rotate(PI/4);
   if(type==3){rotate(angle1+PI/type-PI/4);}//Lo único que diferencia tri de cuatro
-
-  polygon(0,0,radius/2,type);
+  polygon(size,type);
   float sx,sy,a=0;
   float sx1 = cos(a) * radiusPoly;
   float sy1 = sin(a) * radiusPoly;
@@ -47,11 +46,11 @@ void polygon3D(float angle1,int type,int radius,int size) {
     sy = sy1;
     beginShape();
     vertex(sx, sy, 0);
-    vertex(sx, sy, -20);
+    vertex(sx, sy, -deepness);
     a += angle2;
     sx1 = cos(a) * radiusPoly;
     sy1 = sin(a) * radiusPoly;
-    vertex(sx1, sy1, -20);
+    vertex(sx1, sy1, -deepness);
     vertex(sx1, sy1, 0);
     vertex(sx, sy, 0);
     endShape(CLOSE);
