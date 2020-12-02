@@ -14,7 +14,7 @@ class Obstacle {
     type= type1;
     number=number1;
   }
-  
+
   //Método_Función
   void display() {
     push();
@@ -26,17 +26,17 @@ class Obstacle {
     pop();
   }
   void polygon3D(int angle1) {
-    rotate(radians(angle1));
+    //rotate(radians(angle1));
     float angle2 = TWO_PI / type;
-    float radius=playerRadius/2/cos(radians(angle2)/2);
+    float radius=playerRadius/2/cos(angle2/2);
     float x = cos(radians(angle1))*playerRadius;
-    float y = sin(radians(angle1))*playerRadius;    
-    polygon(x,y,playerRadius/2,type); 
+    float y = sin(radians(angle1))*playerRadius;
+    polygon(x,y,playerRadius/2,type);
     float sx,sy,a=0;
     float sx1 = x + cos(a) * radius;
     float sy1 = y + sin(a) * radius;
     a=0;
-    while(a<TWO_PI){     
+    while(a<TWO_PI){
       sx = sx1;
       sy = sy1;
       beginShape();

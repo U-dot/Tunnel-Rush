@@ -5,8 +5,8 @@ int playerRadius = height/2; //Radio de movimiento de los jugadores
 //Tamaño del polígono
 float angle = TWO_PI / npolygon;
 float polyRadius = playerRadius/cos(angle/2);
-Obstacle tri = new Obstacle(2,90,3,3);
-Player P1 = new Player();
+Obstacle tri = new Obstacle(0,0,3,3);
+Player P1 = new Player(playerRadius,0);
 void setup() {
   size(500, 500, P3D);
   

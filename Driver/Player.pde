@@ -9,7 +9,7 @@ class Player {
   //Constructor
   Player(float r, float t) {
     Counter++;
-    radius = r;
+    radius = r;//r no es playerRadius? extra
     angle = t;
     count = Counter;
   }
