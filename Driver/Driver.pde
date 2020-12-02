@@ -1,5 +1,6 @@
 int z = 0, page = 1;
 float theta = 1;
+int distanceTunnel=100;
 int npolygon = 8; //Números de lados del polígono
 int playerRadius = height/2; //Radio de movimiento de los jugadores
 //Define tamaño del polígono
@@ -10,10 +11,12 @@ void setup() {
   size(500, 500, P3D);
   int typePoly=0;
   int numberPoly=0;
+  float angle=0;
   for (int i=0;i<lengthTunnel/2;i++){
     typePoly= int(random(3,5));
     numberPoly=int(random(0,5));
-    obstacles[i]=new Obstacle(i*2,0,typePoly,numberPoly);
+    angle=random(0,TWO_PI);
+    obstacles[i]=new Obstacle(i*2,angle,typePoly,numberPoly);
   }
 }
 
@@ -28,7 +31,7 @@ void gamePage() {
   for(int i=0;i<lengthTunnel/2;i++){
     obstacles[i].display();
   }
-  z++;
+  //z++;
   P1.drawP();
   if (keyPressed && key==CODED) {
     if (keyCode==LEFT) {
@@ -41,10 +44,10 @@ void gamePage() {
       z+=3;
     }
     println(theta);
-            //obstacles[int(z/100)].posZ,
-            //obstacles[int(z/100)].angle,
-            //obstacles[int(z/100)].type,
-            //obstacles[int(z/100)].number);
+            //obstacles[int(z/distanceTunnel)].posZ,
+            //obstacles[int(z/distanceTunnel)].angle,
+            //obstacles[int(z/distanceTunnel)].type,
+            //obstacles[int(z/distanceTunnel)].number);
   }
 }
 
