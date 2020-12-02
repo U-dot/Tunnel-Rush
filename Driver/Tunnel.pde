@@ -26,3 +26,40 @@ void polygon(float x, float y, float apotema, int npoints) {
   }
   endShape(CLOSE);
 }//A partir de ejemplo de Processing
+
+void polygon3D(float angle1,int type,int radius,int size) {
+  float angle2 = TWO_PI / type;
+  float radiusPoly=size/2/cos(angle2/2);
+  float x = cos(angle1)*radius;
+  float y = sin(angle1)*radius;
+  push();
+  translate(x,y);
+  rotate(PI/4);
+  if(type==3){rotate(angle1+PI/type-PI/4);}//Lo único que diferencia tri de cuatro
+
+  polygon(0,0,radius/2,type);
+  float sx,sy,a=0;
+  float sx1 = cos(a) * radiusPoly;
+  float sy1 = sin(a) * radiusPoly;
+
+  while(a<TWO_PI){
+    sx = sx1;
+    sy = sy1;
+    beginShape();
+    vertex(sx, sy, 0);
+    vertex(sx, sy, -20);
+    a += angle2;
+    sx1 = cos(a) * radiusPoly;
+    sy1 = sin(a) * radiusPoly;
+    vertex(sx1, sy1, -20);
+    vertex(sx1, sy1, 0);
+    vertex(sx, sy, 0);
+    endShape(CLOSE);
+  }
+  pop();
+}//A partir de ejemplo de Processing
+void colision(Obstacle obs,Player p1){
+  for(int i=0;i<obs.number;i++){
+    float angleDummy=obs.angle+TWO_PI/obs.number*(i+1);
+  }
+}

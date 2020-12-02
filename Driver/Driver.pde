@@ -36,11 +36,15 @@ void gamePage() {
     } else if (keyCode==RIGHT) {
       theta--;
     }else if(keyCode==ALT){
-      noLoop();
+      z-=3;
     }else if(keyCode==CONTROL){
-      loop();
+      z+=3;
     }
-    println("theta",theta);
+    println(theta);
+            //obstacles[int(z/100)].posZ,
+            //obstacles[int(z/100)].angle,
+            //obstacles[int(z/100)].type,
+            //obstacles[int(z/100)].number);
   }
 }
 
