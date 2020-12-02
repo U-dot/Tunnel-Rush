@@ -1,20 +1,18 @@
 int Counter = 0;
 class Player {
-  //Atributos
+ 
   int[] c = {int(random(255)), int(random(255)), int(random(255))};
   float radius;
   float angle;
   int count;
 
-  //Constructor
   Player(float r, float t) {
     Counter++;
-    radius = r;//r no es playerRadius? extra
+    radius = r;
     angle = t;
     count = Counter;
   }
 
-  //Métodos
   void drawP() {
     if (count == 1) {
       if (keyPressed && key == CODED) {

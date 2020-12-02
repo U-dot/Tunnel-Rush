@@ -6,7 +6,7 @@ void drawTunnel() {
   translate(width/2, height/2, z);
   stroke(255);
   noFill();
-  for (int i=-3; i<=30; i++) {
+  for (int i=-3; i<=lengthTunnel; i++) {
     translate(0, 0, -i*100);
     circle( cos(radians(theta))*playerRadius, sin(radians(theta))*playerRadius, 10);
     polygon(0, 0, playerRadius+10, npolygon);
