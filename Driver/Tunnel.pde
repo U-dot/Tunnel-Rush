@@ -57,8 +57,3 @@ void polygon3D(float angle1,int type,int radius,int size,int deepness) {
   }
   pop();
 }//A partir de ejemplo de Processing
-void colision(Obstacle obs,Player p1){
-  for(int i=0;i<obs.number;i++){
-    float angleDummy=obs.angle+TWO_PI/obs.number*(i+1);
-  }
-}
