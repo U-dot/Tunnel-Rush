@@ -1,33 +1,35 @@
 int Counter = 0;
 class Player {
- 
+  //Atributos
   int[] c = {int(random(255)), int(random(255)), int(random(255))};
   float radius;
   float angle;
   int count;
 
-  Player(float r, float t) {
+  //Constructor
+  Player(float r, float a) {
     Counter++;
     radius = r;
-    angle = t;
+    angle = a;
     count = Counter;
   }
 
+  //Métodos
   void drawP() {
     if (count == 1) {
       if (keyPressed && key == CODED) {
         if (keyCode == LEFT) {
-          angle++;
+          angle+=1.5;
         } else if (keyCode == RIGHT) {
-          angle--;
+          angle-=1.5;
         }
       }
     } else if (count == 2) {
       if (keyPressed) {
         if (key == 'a') {
-          angle++;
+          angle+=1.5;
         } else if (key == 'd') {
-          angle--;
+          angle-=1.5;
         }
       }
     }
@@ -35,8 +37,7 @@ class Player {
     fill(c[0], c[1], c[2]);
     stroke(c[0], c[1], c[2]);
     circle(cos(radians(angle))*radius, sin(radians(angle))*radius, 10);
-    if(radians(angle)%TWO_PI == 0)
+    if (radians(angle)%TWO_PI == 0)
       angle = 0;
   }
-
 }
