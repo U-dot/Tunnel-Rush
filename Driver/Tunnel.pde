@@ -1,16 +1,28 @@
 void drawTunnel() {
   //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-  //camera(mouseX*2, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  //camera(mouseX*2, mouseY*2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  camera(mouseX*4, mouseY*4, -716, width/2, height/2, 0, 0, 1, 0);
+
   //Descomentar lo anterior para ver el tunel desde afuera
   push();
   translate(width/2, height/2, z);
+  stroke(255,0,0);//Red Y
+  line(0,0,0,height);
+  stroke(0,255,0);//Green X
+  line(0,0,width,0);
+  stroke(0,0,255);//Blue Z
+  line(0,0,0,0,0,500);
   stroke(255);
   noFill();
-  for (int i=-3; i<=lengthTunnel; i++) {
-    translate(0, 0, -i*distanceTunnel);
+  for (int i=0; i<=lengthTunnel; i++) {
+    push();
+    translate((distanceTunnel*lengthTunnel/TWO_PI)*sin(unitRotateTunnel*i),
+              0,
+             (distanceTunnel*lengthTunnel/TWO_PI)*cos(unitRotateTunnel*i));
+    rotateY(PI/3*i*unitRotateTunnel+PI/2);//unitRotateTunnel);
     circle( cos(radians(theta))*playerRadius, sin(radians(theta))*playerRadius, 10);
     polygon( playerRadius+10, npolygon);
-    translate(0, 0, i*distanceTunnel);
+    pop();
   }
   pop();
 }

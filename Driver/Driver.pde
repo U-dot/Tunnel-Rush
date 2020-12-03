@@ -4,7 +4,9 @@ int distanceTunnel=100;
 int npolygon = 8; //Números de lados del polígono
 int playerRadius = height/2; //Radio de movimiento de los jugadores
 //Define tamaño del polígono
-int lengthTunnel=30;
+int lengthTunnel=30;//0;
+float rotateTunnel=0;
+float unitRotateTunnel=TWO_PI/lengthTunnel;
 Obstacle[] obstacles = new Obstacle[lengthTunnel];
 Player P1 = new Player(playerRadius,0);
 void setup() {
@@ -29,9 +31,13 @@ void gamePage() {
   background(0);
   drawTunnel();
   for(int i=0;i<lengthTunnel/2;i++){
-    obstacles[i].display();
+    //obstacles[i].display();
   }
   //z++;
+  if(z%100==0){
+    rotateTunnel+=unitRotateTunnel;
+  }
+  unitRotateTunnel=radians(theta);
   P1.drawP();
   if (keyPressed && key==CODED) {
     if (keyCode==LEFT) {
