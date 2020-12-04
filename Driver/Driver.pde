@@ -25,13 +25,13 @@ void setup() {
 void draw() {
   background(20);
   pageSelector();
-  if(keyPressed){
-    if(keyCode == ENTER && page!=4) {
-      resetGame();
-      page++;
-      print("page",page);
-    }
-  }
+}
+void keyPressed(){
+  if(keyCode == ENTER && page!=4) {
+    resetGame();
+    page++;
+    print("page",page);
+  }if(page>5){page=1;}
 }
 
 void pageSelector() {//Escoge la página
