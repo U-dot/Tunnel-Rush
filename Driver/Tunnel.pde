@@ -20,9 +20,9 @@ void drawTunnel() {
   pop();
 }
 
-void polygon( float apotema, int npoints) {
+void polygon(float apotema, int npoints) {
   float angle = TWO_PI / npoints;
-  float radius=apotema/cos(angle/2);
+  float radius = apotema/cos(angle/2);
   beginShape();
   for (float a = 0; a < TWO_PI; a += angle) {
     float sx = cos(a) * radius;
@@ -32,21 +32,24 @@ void polygon( float apotema, int npoints) {
   endShape(CLOSE);
 }//A partir de ejemplo de Processing
 
-void polygon3D(float angle1,int type,int radius,int size,int deepness) {
+void polygon3D(float angle1, int type, int radius, int size, int deepness) {
   float angle2 = TWO_PI / type;
   float radiusPoly=size/cos(angle2/2);
   float x = cos(angle1)*radius;
   float y = sin(angle1)*radius;
   push();
-  translate(x,y);
+  translate(x, y);
   rotate(PI/4);
-  if(type==3){rotate(angle1+PI/type-PI/4);}//Lo único que diferencia tri de cuatro
-  polygon(size,type);
-  float sx,sy,a=0;
+  if (type==3) {
+    rotate(angle1+PI/type-PI/4);
+  }//Lo único que diferencia tri de cuatro
+
+  polygon(size, type);
+  float sx, sy, a=0;
   float sx1 = cos(a) * radiusPoly;
   float sy1 = sin(a) * radiusPoly;
 
-  while(a<TWO_PI){
+  while (a < TWO_PI) {
     sx = sx1;
     sy = sy1;
     beginShape();
