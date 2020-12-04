@@ -37,7 +37,7 @@ void gamePage() {
   push();
   P1.drawP();
   pop();
-  */push();
+  /*push();
   P2.drawP();
   pop();*/
   if (obstacles.size() > 0) {
