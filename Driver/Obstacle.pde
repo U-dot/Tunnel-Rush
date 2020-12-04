@@ -39,24 +39,31 @@ void colisiones(Obstacle obs, Player p) {
     if (obs.oba.length == 1) {
       if (((abs(obs.oba[0] - radians(p.angle)) <= 6.8 && abs(obs.oba[0] - radians(p.angle)) >= 5.8) || (abs(obs.oba[0] - radians(p.angle)) <= 0.5 && abs(obs.oba[0] - radians(p.angle)) >= 0))) {
         z--;
+        page++;
       }
     } else if (obs.oba.length == 2) {
       if (((abs(obs.oba[0] - radians(p.angle)) <= 0.5)) || ((abs(obs.oba[0] - radians(p.angle)) >= 4.2) && (abs(obs.oba[0] - radians(p.angle)) <= 5.2))) {
         z--;
+        page++;
       } else if ((((abs(obs.oba[1] - radians(p.angle)) <= 0.5)) || ((abs(obs.oba[1] - radians(p.angle)) >= 7.4) && (abs(obs.oba[1] - radians(p.angle)) <= 8.3)))) {
         z--;
+        page++;
       }
     } else if (obs.oba.length == 3) {
       if (((abs(obs.oba[0] - radians(p.angle)) <= 0.47)) || ((abs(obs.oba[0] - radians(p.angle)) <= 1.5) && (abs(obs.oba[0] - radians(p.angle)) >= 0.6)) || ((abs(obs.oba[0] - radians(p.angle)) <= 2.55) && (abs(obs.oba[0] - radians(p.angle)) >= 1.7))) {
         z--;
+        page++;
       } else if (((abs(obs.oba[0] - radians(p.angle)) <= 6.7) && (abs(obs.oba[0] - radians(p.angle)) >= 5.8)) || ((abs(obs.oba[0] - radians(p.angle)) <= 5.75) && (abs(obs.oba[0] - radians(p.angle)) >= 4.8)) || ((abs(obs.oba[0] - radians(p.angle)) <= 4.6) && (abs(obs.oba[0] - radians(p.angle)) >= 3.7))) {
         z--;
+        page++;
       }
     } else if (obs.oba.length == 4) {
       if (((abs(obs.oba[0] - radians(p.angle)) <= 0.45)) || (obs.oba[0] - radians(p.angle)) >= -2.8 && (obs.oba[0] - radians(p.angle)) <= -0) {
         z--;
+        page++;
       } else if (((abs(obs.oba[0] - radians(p.angle)) <= 6.7)) && (abs(obs.oba[0] - radians(p.angle)) >= 3.5)) {
         z--;
+        page++;
       }
     }
   }
