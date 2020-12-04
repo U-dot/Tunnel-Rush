@@ -1,23 +1,24 @@
-void drawTunnel() {
+void drawTunnel(int numberTunnels) {
   //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
   //camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
   //Descomentar lo anterior para ver el tunel desde afuera
-  push();
-  translate(width/2, height/2, z);
-  stroke(255);
-  noFill();
-  for (int i = 0; i <= lengthTunnel; i++) {
-    translate(0, 0, -i*distanceTunnel);
-    if(page == 1){
-      rotate(minute());
+  for(int j=1;j<numberTunnels;j++){
+    push();
+    translate(j*width/2/numberTunnels, height/2, z);
+    stroke(255);
+    noFill();
+    for (int i = -3; i <= lengthTunnel; i++) {
       stroke(int(random(255)), int(random(255)), int(random(255)));
+      translate(0, 0, -i*distanceTunnel);
+      circle( cos(radians(P1.angle))*playerRadius/numberTunnels, 
+              sin(radians(P1.angle))*playerRadius/numberTunnels, 
+              playerSize);
+      //circle( cos(radians(P2.angle))*playerRadius, sin(radians(P2.angle))*playerRadius, playerSize);
+      polygon((playerRadius+playerSize)/numberTunnels, npolygon);
+      translate(0, 0, i*distanceTunnel);
     }
-    circle( cos(radians(P1.angle))*playerRadius, sin(radians(P1.angle))*playerRadius, 10);
-    //circle( cos(radians(P2.angle))*playerRadius, sin(radians(P2.angle))*playerRadius, 10);
-    polygon(playerRadius+10, npolygon);
-    translate(0, 0, i*distanceTunnel);
+    pop();
   }
-  pop();
 }
 
 void polygon(float apotema, int npoints) {
@@ -32,7 +33,8 @@ void polygon(float apotema, int npoints) {
   endShape(CLOSE);
 }//A partir de ejemplo de Processing
 
-void polygon3D(float angle1, int type, int radius, int size, int deepness) {
+void polygon3D(float angle1, int type, int radius, 
+               int size, int deepness, boolean cover) {
   float angle2 = TWO_PI / type;
   float radiusPoly=size/cos(angle2/2);
   float x = cos(angle1)*radius;
@@ -43,8 +45,9 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness) {
   if (type==3) {
     rotate(angle1+PI/type-PI/4);
   }//Lo único que diferencia tri de cuatro
-
-  polygon(size, type);
+  if (cover){
+    polygon(size, type);
+  }
   float sx, sy, a=0;
   float sx1 = cos(a) * radiusPoly;
   float sy1 = sin(a) * radiusPoly;
@@ -64,4 +67,4 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness) {
     endShape(CLOSE);
   }
   pop();
-}//A partir de ejemplo de Processing
+}

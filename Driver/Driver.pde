@@ -3,7 +3,7 @@ float theta = 1;
 int distanceTunnel = 100;
 int npolygon = 8; //Números de lados del polígono
 int playerRadius = height/2; //Radio de movimiento de los jugadores
-//Tamaño del polígono
+int playerSize=10;
 int lengthTunnel = 20;
 ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 Player P1 = new Player(playerRadius, 0);
@@ -12,25 +12,46 @@ PFont font;
 
 void setup() {
   size(500, 500, P3D);
-  int typePoly = 0;
-  int numberPoly = 0;
-  float angle = 0;
-  for (int i = 0; i < lengthTunnel/2; i++) {
-    typePoly = int(random(3, 5));
-    numberPoly = int(random(1, 5));
-    angle = random(TWO_PI);
-    obstacles.add(new Obstacle(i*2, angle, typePoly, numberPoly));
-  }
+  textAlign(CENTER);
   font = createFont("Bitstream Charter Bold Italic", 45, true);
+
 }
 
 void draw() {
   background(20);
   pageSelector();
+  if(keyPressed){
+    if(keyCode == ENTER && page!=2) {
+      resetGame();
+      page++;
+    }
+  }
 }
 
+void pageSelector() {//Escoge la página
+  switch(page) {
+    case 1:
+      introPage();
+      break;
+    case 2:
+      gamePage();
+      break;
+    case 3:
+      gameOverPage();
+      break;
+  }
+}
+void introPage(){
+  drawTunnel(1);
+  textFont(font);
+  text("TUNNEL RUSH", width/2,height/3);
+  push();
+  textSize(25);
+  text("PRESS ENTER TO START", width/2,height*2/3);
+  pop();
+}
 void gamePage() {
-  drawTunnel();
+  drawTunnel(1);
   for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
     obstacles.get(i).display();
   }
@@ -40,6 +61,10 @@ void gamePage() {
   /*push();
    P2.drawP();
    pop();*/
+  z++;
+  if (obstacles.size() > 0) {
+    //colisiones(obstacles.get(0), P1);
+  }
   if (keyPressed && key == CODED) {
     if (keyCode == LEFT) {
       theta+=2;
@@ -51,38 +76,24 @@ void gamePage() {
       z+=3;
     }
   }
-  z++;
-  if (obstacles.size() > 0) {
-    colisiones(obstacles.get(0), P1);
-  }
 }
-
-void pageSelector() {//Escoge la página
-  switch(page) {
-  case 1:
-    z = 1000;
-    drawTunnel();
-    textFont(font);
-    text("TUNNEL RUSH", 100,150);
-    push();
-    textSize(25);
-    text("Press 'enter' to start", 150,350);
-    pop();
-    if(keyPressed){
-      if(keyCode == ENTER) {
-        z = 0;
-        page++;
-      }
-    }
-    break;
-  case 2:
-    gamePage();
-    break;
-  case 3:
-    push();
-    textSize(60);
-    text("GAME OVER",70,230);
-    pop();
-    break;
+void gameOverPage(){
+  push();
+  textSize(60);
+  text("GAME OVER",width/2,height/2);
+  pop();
+}
+void resetGame(){
+  int typePoly = 0;
+  int numberPoly = 0;
+  float anglePoly = 0;
+  z=0;
+  for (int i = 0; i < lengthTunnel/2; i++) {
+    typePoly = int(random(3, 5));
+    numberPoly = int(random(1, 5));
+    anglePoly = random(TWO_PI);
+    obstacles.add(new Obstacle(i*2, anglePoly, typePoly, numberPoly));
   }
+  Player P1 = new Player(playerRadius, 0);
+//Player P2 = new Player(playerRadius, PI);
 }

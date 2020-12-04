@@ -36,7 +36,7 @@ class Player {
     translate(width/2, height/2, 300);
     fill(c[0], c[1], c[2]);
     stroke(c[0], c[1], c[2]);
-    circle(cos(radians(angle))*radius, sin(radians(angle))*radius, 10);
+    circle(cos(radians(angle))*radius, sin(radians(angle))*radius, playerSize);
     if (radians(angle)%TWO_PI == 0)
       angle = 0;
   }
