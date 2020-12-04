@@ -36,34 +36,18 @@ class Obstacle {
 }
 
 void colisiones(Obstacle obs, Player p) {
-  if ((z-obs.posZ*distanceTunnel)%100 >= 0 && (z-obs.posZ*distanceTunnel)%100 <= 20 && z-obs.posZ*distanceTunnel >= 299) {
-    if (obs.oba.length == 1) {
-      if (((abs(obs.oba[0] - radians(p.angle)) <= 6.8 && abs(obs.oba[0] - radians(p.angle)) >= 5.8) || (abs(obs.oba[0] - radians(p.angle)) <= 0.5 && abs(obs.oba[0] - radians(p.angle)) >= 0))) {
-        gameOver();
-      }
-    } else if (obs.oba.length == 2) {
-      if (((abs(obs.oba[0] - radians(p.angle)) <= 0.5)) || ((abs(obs.oba[0] - radians(p.angle)) >= 4.2) && (abs(obs.oba[0] - radians(p.angle)) <= 5.2))) {
-        gameOver();
-      } else if ((((abs(obs.oba[1] - radians(p.angle)) <= 0.5)) || ((abs(obs.oba[1] - radians(p.angle)) >= 7.4) && (abs(obs.oba[1] - radians(p.angle)) <= 8.3)))) {
-        gameOver();
-      }
-    } else if (obs.oba.length == 3) {
-      if (((abs(obs.oba[0] - radians(p.angle)) <= 0.47)) || ((abs(obs.oba[0] - radians(p.angle)) <= 1.5) && (abs(obs.oba[0] - radians(p.angle)) >= 0.6)) || ((abs(obs.oba[0] - radians(p.angle)) <= 2.55) && (abs(obs.oba[0] - radians(p.angle)) >= 1.7))) {
-        gameOver();
-      } else if (((abs(obs.oba[0] - radians(p.angle)) <= 6.7) && (abs(obs.oba[0] - radians(p.angle)) >= 5.8)) || ((abs(obs.oba[0] - radians(p.angle)) <= 5.75) && (abs(obs.oba[0] - radians(p.angle)) >= 4.8)) || ((abs(obs.oba[0] - radians(p.angle)) <= 4.6) && (abs(obs.oba[0] - radians(p.angle)) >= 3.7))) {
-        gameOver();
-      }
-    } else if (obs.oba.length == 4) {
-      if (((abs(obs.oba[0] - radians(p.angle)) <= 0.45)) || (obs.oba[0] - radians(p.angle)) >= -2.8 && (obs.oba[0] - radians(p.angle)) <= -0) {
-        gameOver();
-      } else if (((abs(obs.oba[0] - radians(p.angle)) <= 6.7)) && (abs(obs.oba[0] - radians(p.angle)) >= 3.5)) {
-        gameOver();
+  for (int i = 0; i < obs.number; i++) {
+    if ((abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= 0.46 || (abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= TWO_PI && abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI >= 5.8))) {
+      if ((z-obs.posZ*distanceTunnel)%100 >= 0 && (z-obs.posZ*distanceTunnel)%100 <= 20 && z-obs.posZ*distanceTunnel >= 299) {
+        page++;
       }
     }
+    println(abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI);
   }
   if ((z-obs.posZ*distanceTunnel)%100 == obs.deepness+1 && z-obs.posZ*distanceTunnel >= 299)
     obstacles.remove(0);
 }
+
 void gameOver(){
   z--;
   page++;
