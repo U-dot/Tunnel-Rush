@@ -1,10 +1,10 @@
 void drawTunnel(int numberTunnels) {
   //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
   //camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  
   //Descomentar lo anterior para ver el tunel desde afuera
   for(int j=0;j<numberTunnels;j++){
     push();
-    camera();
     translate((j*2+1)*width/2/numberTunnels, height/2, z);
     stroke(255);
     noFill();

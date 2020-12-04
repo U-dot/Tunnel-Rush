@@ -7,7 +7,6 @@ class Obstacle {
   int radius = playerRadius;
   int size = playerRadius/3;
   int deepness = 20;
-  //Múltiplos de n=3 o n=4 son varias veces el obstáculo n
   int[] c = {int(random(255)), int(random(255)), int(random(255))};
   float[] oba;
 
