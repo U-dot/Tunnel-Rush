@@ -49,8 +49,8 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness, boole
   if(cover){
     polygon(size, type);
   }else{
-    fill(100,150,100);
     rotate(TWO_PI/sidesTunnel);
+    fill(0);
   }
 
   float sx, sy, a=0;

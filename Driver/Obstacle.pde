@@ -8,7 +8,7 @@ class Obstacle {
   int size = playerRadius/3;
   int deepness = 20;
   //Múltiplos de n=3 o n=4 son varias veces el obstáculo n
-  int[] c = {int(random(255)), int(random(255)), int(random(255))};
+  color c = color(int(random(255)) , int(random(255)), int(random(255)) );
   float[] oba;
 
   //Constructor
@@ -27,7 +27,7 @@ class Obstacle {
   void display() {
     push();
     stroke(0);
-    fill(c[0], c[1], c[2]);
+    fill(c);
     translate(width/2, height/2, z-posZ*distanceTunnel);
     for (int i = 0; i < number; i++) {
       polygon3D(oba[i], type, radius, size, deepness,true);
@@ -51,7 +51,7 @@ void colisiones(Obstacle obstacle1, Player p) {
       if ((z-obstacle1.posZ*distanceTunnel)%100 >= 0){
         if( (z-obstacle1.posZ*distanceTunnel)%100 <= 20){
           if( z-obstacle1.posZ*distanceTunnel >= 299) {
-            page++;
+            page=3;
           }
         }
       }

@@ -5,12 +5,11 @@ int distanceTunnel = 100;
 int sidesTunnel = 8; //Números de lados del polígono
 int playerRadius; //Radio de movimiento de los jugadores
 int playerSize=10;
-int lengthTunnel = 20;//Múltiplo de 5
+int lengthTunnel = 20;
 int controlsPosX=0,controlsPosY=0;
-int numberControls=5;
+int numberControls=8;
 int[] controls=new int[numberControls];
 int mode=0;
-color colorTunnel=color(255,150,50);
 PFont font;
 
 
@@ -42,7 +41,6 @@ void keyPressed(){
     if(key=='c'||key=='C'){page=6;}
   }
   if (keyPressed && key == CODED) {
-
     if(page==6){
       if (keyCode == RIGHT) {
         controls[controlsPosY]++;
@@ -55,7 +53,6 @@ void keyPressed(){
       }
     }
   }
-
 }
 
 void pageSelector() {//Escoge la página
@@ -151,16 +148,18 @@ void helpPage() {
 }
 
 void controlPage(){
-  println(mode);
   if(controlsPosY<0){controlsPosY=numberControls-1;}
   else if(controlsPosY>=numberControls){controlsPosY=0;}
-  else if(controls[0]<0||controls[0]>1000){controls[0]=0;}
+  else if(controls[0]<0||controls[0]>100){controls[0]=0;}
   else if(controls[1]>2){controls[1]=0;}
-else if(controls[1]<0){controls[1]=2;}
-  int numberLines=9+1;
+  else if(controls[1]<0){controls[1]=2;}
+  for(int i=2;i<numberControls;i++){
+    if(controls[i]>16){controls[i]=0;}
+    if(controls[i]<0){controls[i]=16;}
+  }
   stroke(255);
-  line(width*2/3-10,height/numberLines*(controlsPosY+3)+5,
-       width*2/3+10,height/numberLines*(controlsPosY+3)+5);
+  int numberLines=9+1;
+
   text("Game controls stack",width/2,height/numberLines);
 
   text("Distance:",width/3,height*3/numberLines);
@@ -170,27 +169,44 @@ else if(controls[1]<0){controls[1]=2;}
   text("Mode",width/3,  height*4/numberLines);
   text(modesStr[mode],width*2/3,height*4/numberLines);
 
-  text("Color Tunnel",width/3,height*5/numberLines);
-  float rectWidth=width/13,rectHeight=width/40,rectDifH=width/100;
+  text("Color P1",width/3,height*5/numberLines);
+  float rectWidth=width/13,rectHeight=width/40;
   push();
-  int i=0;
-  fill(red(colorTunnel),0,0);
+  fill(red(P1.c),0,0);
   rect(width*2/3,height*5/numberLines+(0-1)*rectHeight,rectWidth,rectHeight);
-  fill(0,green(colorTunnel),0);
+  fill(0,green(P1.c),0);
   rect(width*2/3,height*5/numberLines+(1-1)*rectHeight,rectWidth,rectHeight);
-  fill(0,0,blue(colorTunnel));
+  fill(0,0,blue(P1.c));
   rect(width*2/3,height*5/numberLines+(2-1)*rectHeight,rectWidth,rectHeight);
-  fill(colorTunnel);
+  fill(P1.c);
   rect(width*2.5/3,height*5/numberLines,rectWidth,rectHeight*3);
   pop();
+  push();
+  text("Color P2",width/3,height*6/numberLines);
+  fill(red(P2.c),0,0);
+  rect(width*2/3,height*6/numberLines+(0-1)*rectHeight,rectWidth,rectHeight);
+  fill(0,green(P2.c),0);
+  rect(width*2/3,height*6/numberLines+(1-1)*rectHeight,rectWidth,rectHeight);
+  fill(0,0,blue(P2.c));
+  rect(width*2/3,height*6/numberLines+(2-1)*rectHeight,rectWidth,rectHeight);
+  fill(P2.c);
+  rect(width*2.5/3,height*6/numberLines,rectWidth,rectHeight*3);
+  pop();
 
+  float lineH=controlsPosY;
+  if(controlsPosY>1){
+    lineH=int((controlsPosY+1)/3)+1+((controlsPosY+1)%3-1)*rectHeight;
+  }
+  line(width*2/3-10,height/numberLines*(lineH+3)+5,
+       width*2/3+10,height/numberLines*(lineH+3)+5);
   text("Press ENTER to play",width/2,height*8/numberLines);
   text("Press H to go to HELP",width/2,height*9/numberLines);
   println(controlsPosY,controls[controlsPosY]);
 
   lengthTunnel=controls[0]*10;
   mode=controls[1];
-  colorTunnel=color(controls[2],controls[3],controls[4]);
+  P1.c=color(controls[2]*15,controls[3]*15,controls[4]*15);
+  P2.c=color(controls[5]*15,controls[6]*15,controls[7]*15);
 }
 
 void resetGame() {
@@ -208,11 +224,14 @@ void resetGame() {
     obstacles.add(new Obstacle(i*2, angle, typePoly, numberPoly));
   }
   controlsPosX=0;controlsPosY=0;
-  controls[0]=lengthTunnel/5;
+  controls[0]=lengthTunnel/10;
   controls[1]=mode;
-  controls[2]=colorTunnel>> 16 & 0xFF;
-  controls[3]=colorTunnel>> 8 & 0xFF;
-  controls[4]=colorTunnel & 0xFF;
+  controls[2]=int((P1.c>> 16 & 0xFF)/15);
+  controls[3]=int((P1.c>> 8 & 0xFF)/15);
+  controls[4]=int((P1.c & 0xFF)/15);
+  controls[5]=int((P2.c>> 16 & 0xFF)/15);
+  controls[6]=int((P2.c>> 8 & 0xFF)/15);
+  controls[7]=int((P2.c & 0xFF)/15);
 
 
 }

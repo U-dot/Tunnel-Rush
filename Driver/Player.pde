@@ -1,7 +1,7 @@
 class Player {
   //Atributos
   //boolean[] keys = {false, false, false, false};
-  int[] c = {int(random(255)), int(random(255)), int(random(255))};
+  color c;
   float radius;
   float angle;
 
@@ -9,14 +9,15 @@ class Player {
   Player(float r, float a) {
     radius = r;
     angle = a;
+    c= color(int(random(255)) , int(random(255)), int(random(255)) );
   }
 
   //Métodos
   void drawP() {
     push();
     translate(width/2, height/2, 300);
-    fill(c[0], c[1], c[2]);
-    stroke(c[0], c[1], c[2]);
+    fill(c);
+    stroke(c);
     circle(cos(radians(angle))*radius, sin(radians(angle))*radius, playerSize);
     if (radians(angle)%TWO_PI == 0) {
       angle = 0;
