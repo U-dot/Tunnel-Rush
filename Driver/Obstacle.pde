@@ -63,8 +63,3 @@ void colisiones(Obstacle obstacle1, Player p) {
     }
   }
 }
-
-void gameOver(){
-  z--;
-  page++;
-}

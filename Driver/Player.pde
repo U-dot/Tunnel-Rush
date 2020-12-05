@@ -13,6 +13,7 @@ class Player {
 
   //Métodos
   void drawP() {
+    push();
     translate(width/2, height/2, 300);
     fill(c[0], c[1], c[2]);
     stroke(c[0], c[1], c[2]);
@@ -25,8 +26,8 @@ class Player {
      } else if (keys[1] || keys[3]) {
      angle -= 1.5;
      }*/
+     pop();
   }
-
   void keyPressed1() {
     if (keyPressed) {
       if (key == CODED) {
