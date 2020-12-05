@@ -57,9 +57,4 @@ void colisiones(Obstacle obstacle1, Player p) {
       }
     }
   }
-  if ((z-obstacle1.posZ*distanceTunnel)%100 == obstacle1.deepness+1) {
-    if(z-obstacle1.posZ*distanceTunnel >= 299){
-      obstacles.remove(0);
-    }
-  }
 }
