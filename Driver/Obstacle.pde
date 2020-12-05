@@ -7,6 +7,7 @@ class Obstacle {
   int radius = playerRadius;
   int size = playerRadius/3;
   int deepness = 20;
+  //Múltiplos de n=3 o n=4 son varias veces el obstáculo n
   int[] c = {int(random(255)), int(random(255)), int(random(255))};
   float[] oba;
 
@@ -29,7 +30,7 @@ class Obstacle {
     fill(c[0], c[1], c[2]);
     translate(width/2, height/2, z-posZ*distanceTunnel);
     for (int i = 0; i < number; i++) {
-      polygon3D(oba[i], type, radius, size, deepness,true);
+      polygon3D(oba[i], type, radius, size, deepness);
     }
     pop();
   }
@@ -42,10 +43,7 @@ void colisiones(Obstacle obs, Player p) {
         page++;
       }
     }
-    println(abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI);
   }
-  if ((z-obs.posZ*distanceTunnel)%100 == obs.deepness+1 && z-obs.posZ*distanceTunnel >= 299)
-    obstacles.remove(0);
 }
 
 void gameOver(){
