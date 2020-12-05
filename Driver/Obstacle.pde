@@ -30,18 +30,36 @@ class Obstacle {
     fill(c[0], c[1], c[2]);
     translate(width/2, height/2, z-posZ*distanceTunnel);
     for (int i = 0; i < number; i++) {
-      polygon3D(oba[i], type, radius, size, deepness);
+      polygon3D(oba[i], type, radius, size, deepness,true);
     }
     pop();
   }
 }
 
-void colisiones(Obstacle obs, Player p) {
-  for (int i = 0; i < obs.number; i++) {
-    if ((abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= 0.46 || (abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= TWO_PI && abs(obs.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI >= 5.8))) {
-      if ((z-obs.posZ*distanceTunnel)%100 >= 0 && (z-obs.posZ*distanceTunnel)%100 <= 20 && z-obs.posZ*distanceTunnel >= 299) {
-        page++;
+void colisiones(Obstacle obstacle1, Player p) {
+  boolean colission=false;
+  for (int i = 0; i < obstacle1.number; i++) {
+    if (abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI) %TWO_PI <= 0.46 ){
+      colission=true;
+    }
+    if( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= TWO_PI){
+      if( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI >= 5.8){
+        colission=true;
       }
+    }
+    if(colission){
+      if ((z-obstacle1.posZ*distanceTunnel)%100 >= 0){
+        if( (z-obstacle1.posZ*distanceTunnel)%100 <= 20){
+          if( z-obstacle1.posZ*distanceTunnel >= 299) {
+            page++;
+          }
+        }
+      }
+    }
+  }
+  if ((z-obstacle1.posZ*distanceTunnel)%100 == obstacle1.deepness+1) {
+    if(z-obstacle1.posZ*distanceTunnel >= 299){
+      obstacles.remove(0);
     }
   }
 }

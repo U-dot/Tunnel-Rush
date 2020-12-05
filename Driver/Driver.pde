@@ -1,37 +1,40 @@
-int z = 0, page = 1;
+ArrayList<Obstacle> obstacles;
+Player P1, P2;
+int z = 0, page = 1, theta=1;
 int distanceTunnel = 100;
 int npolygon = 8; //Números de lados del polígono
 int playerRadius; //Radio de movimiento de los jugadores
 int playerSize=10;
 int lengthTunnel = 20;
-float theta = 1;
+int controlsPosX=0,controlsPosY=0;
+int numberControls=4;
+int[] controls=new int[4];
 PFont font;
-ArrayList<Obstacle> obstacles;
-Player P1, P2;
+
 
 void setup() {
   size(500, 500, P3D);
   textAlign(CENTER);
   playerRadius=height/10;
   obstacles = new ArrayList<Obstacle>();
-  P1= new Player(playerRadius, 0);
-  P2 = new Player(playerRadius, PI);
+  P1=new Player(playerRadius,0);
+  P2 = new Player(playerRadius,PI);
   font = createFont("data-latin.ttf", width/20);
+  resetGame();
 }
 
 void draw() {
   background(20);
   pageSelector();
 }
-
-void keyPressed() {
-  if (keyCode == ENTER && page!=4) {
-    resetGame();
+void keyPressed(){
+  if(keyCode == ENTER && page!=4) {
     page++;
+    print("page",page);
+    if(page==4){resetGame();}
+    if(page>5){page=1;}
   }
-  if (page > 5) {
-    page = 1;
-  }
+
 }
 
 void pageSelector() {//Escoge la página
@@ -69,20 +72,21 @@ void introPage() {
 void helpPage() {
   text("HELP", width/2, height/2);
 }
+void controlPage(){
+  //int numberControls=4;
+  //int posX=0,posY=0;
+  //int[] Controls={lengthTunnel
+  //                };
 
-void controlPage() {
-  int numberControls=4;
-  int posX = 0, posY = 0;
-  int[] Controls = {lengthTunnel};
-  text("Game controls stacks", width/2, height/(numberControls+1));
-  text("Distance:", width/3, height*2/(numberControls+1));
-  text(lengthTunnel+"m", width*2/3, height*2/(numberControls+1));
-  text("Game controls(?)", width/3, height*3/(numberControls+1));
+  text("Game controls(?)",width/2,height/(numberControls+1));
+  text("Distance:",width/3,height*2/(numberControls+1));
+  text(lengthTunnel+"m",width*2/3,height*2/(numberControls+1));
+  text("Game controls(?)",width/3,height*3/(numberControls+1));
   if (keyPressed && key == CODED) {
     if (keyCode == LEFT) {
-      lengthTunnel++;
-    } else if (keyCode == RIGHT && lengthTunnel > 1) {
-      lengthTunnel--;
+      controls[0]++;
+    } else if (keyCode == RIGHT) {
+      controls[0]--;
     }
   }
 }
@@ -123,8 +127,7 @@ void gamePage() {
 
 void gameOverPage() {
   push();
-  textSize(60);
-  text("GAME OVER", width/2, height/2);
+  text("GAME OVER",width/2,height/2);
   pop();
 }
 
@@ -140,6 +143,8 @@ void resetGame() {
     angle = random(TWO_PI);
     obstacles.add(new Obstacle(i*2, angle, typePoly, numberPoly));
   }
-  //Player P1 = new Player(playerRadius, 0);
-  //Player P2 = new Player(playerRadius, PI);
+  Player P1 = new Player(playerRadius, 0);
+  Player P2 = new Player(playerRadius, PI);
+  controlsPosX=0;controlsPosY=0;
+  controls[0]=lengthTunnel;
 }
