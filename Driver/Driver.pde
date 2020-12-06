@@ -1,35 +1,33 @@
-int z = 0, page = 1, theta=1;
+//Global variables
+int z = 0, page = 1, theta = 1;
 int distanceTunnel = 100;
-int sidesTunnel = 8; //Números de lados del polígono
-int playerRadius; //Radio de movimiento de los jugadores
+int sidesTunnel = 8; //Poligon number of sides
+int playerRadius; //Player movement ratio
 int playerSize = 10;
 int lengthTunnel = 20;
 int controlsPosX = 0, controlsPosY = 0;
 int numberControls = 8;
 int[] controls = new int[numberControls];
 int mode = 0;
-float difTunnelPVP;
 PFont font;
 ArrayList<Obstacle> obstacles;
 Player P1, P2;
 
 void setup() {
-  size(500,500, P3D);
+  size(500, 500, P3D);
   textAlign(CENTER);
   rectMode(CENTER);
   playerRadius = height/10;
-  difTunnelPVP=width/4;
   obstacles = new ArrayList<Obstacle>();
-  P1 = new Player(playerRadius, 0,color(50,200,150));
-  P2 = new Player(playerRadius, PI,color(200,50,150));
+  P1 = new Player(playerRadius, 0, color(int(random(255)), int(random(255)), int(random(255))));
+  P2 = new Player(playerRadius, PI, color(int(random(255)), int(random(255)), int(random(255))));
   font = createFont("data-latin.ttf", width/18);
 }
 
 void draw() {
   background(20);
   pageSelector();
-  //camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
-  
+  println(mode);
 }
 
 void keyPressed() {
@@ -50,7 +48,7 @@ void keyPressed() {
       page = 6;
     }
   }
-  if (keyPressed && key == CODED) {
+  if (keyPressed) {
     if (page == 6) {
       if (keyCode == RIGHT) {
         controls[controlsPosY]++;
@@ -65,6 +63,9 @@ void keyPressed() {
   }
 }
 
+/**
+ *Select actual page
+ */
 void pageSelector() {//Escoge la página
   switch(page) {
   case 1:
@@ -88,12 +89,13 @@ void pageSelector() {//Escoge la página
   }
 }
 
-void introPage() {drawTunnel();
+void introPage() {
+  drawTunnel();
   textFont(font);
   int numberLines = 11;
   text("TUNNEL RUSH", width/2, height/3);
   text("PRESS ENTER TO PLAY", width/2, height*8/numberLines);
-  text("Press H to go to HELP", width/2, height*9/numberLines);
+  text("Press H to go to HOW TO PLAY", width/2, height*9/numberLines);
   text("Press C to go to Controls", width/2, height*10/numberLines);
 }
 
@@ -106,7 +108,7 @@ void gamePage() {
   P1.drawP();
   P1.keyPressed1();
   pop();
-  if(mode!=0){
+  if (mode != 0) {
     push();
     P2.drawP();
     P2.Mouse();
@@ -114,9 +116,11 @@ void gamePage() {
   }
   if (obstacles.size() > 0) {
     colisiones(obstacles.get(0), P1);
-    if(mode==1){colisiones(obstacles.get(0), P2);}
-    if ((z - obstacles.get(0).posZ*distanceTunnel)%100 == obstacles.get(0).deepness + 1){
-      if(z - obstacles.get(0).posZ*distanceTunnel >= 299) {
+    if (mode == 1) {
+      colisiones(obstacles.get(0), P2);
+    }
+    if ((z - obstacles.get(0).posZ*distanceTunnel)%100 >= obstacles.get(0).deepness + 1) {
+      if (z - obstacles.get(0).posZ*distanceTunnel > 299) {
         obstacles.remove(0);
       }
     }
@@ -124,45 +128,46 @@ void gamePage() {
   if (z > (lengthTunnel+4)*distanceTunnel) {
     page = 4;
   }
-  z++;
-  if (keyPressed && key == CODED) {
+  z += 2;
+  if (keyPressed) {
     if (keyCode == LEFT) {
       //difTunnelPVP++;
       theta++;
     } else if (keyCode == RIGHT) {
       //difTunnelPVP--;
       theta--;
-    } else if (keyCode == CONTROL) {
+    } else if (key == 32) {
       z += 3;
     }
-    println(difTunnelPVP,theta);
   }
 }
 
 void gameOverPage() {
   background(0);
-  //Toca cambiar esto de acuerdo al modo
   drawTunnel();
   for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
     obstacles.get(i).display();
   }
-  textSize(width/18);
-  text("GAME OVER", width/2, height/2, z);
+  text("GAME OVER", width/2, height/2+10, 60);
 }
 
 void helpPage() {
-  text("HELP", width/2, height/4);
-  text("Press ENTER to play", width/2, height*2/4);
-  text("Press C to change controls", width/2, height*3/4);
+  text("HOW TO PLAY", width/2, height/4);
+  text("Player 1: left and right arrows \nPlayer 2: mouse buttons.\n Press SPACE to go faster. \nGo through the tunnel without \ncrushing with any obstacle.\n Enjoy The game :)", 
+    width/2, height*2/4-60);
+  text("Press ENTER to play", width/2, height*3/4+60);
+  text("Press C to change controls", width/2, height-40);
 }
 
 void victoryPage() {
-  int numberLines = 10;
-  text("WON GAME", width/2, height/numberLines);
-  text("Distance", width/3, height*2/numberLines);
-  text(lengthTunnel, width*2/3, height*2/numberLines);
-  text("Press ENTER to play", width/2, height*3/numberLines);
-  text("Press C to change controls", width/2, height*4/numberLines);
+  text("YOU WON", width/2, height/10);
+  text("Distance", width/3, height*2/10);
+  text(lengthTunnel, width*2/3, height*2/10);
+  text("Number of players", width/3, height*3/10);
+  text(controls[1]+1, width*2/3, height*3/10);
+  text("Thanks for playing", width/2, height*5/10);
+  text("Press ENTER to play", width/2, height*7/10);
+  text("Press C to change controls", width/2, height*8/10);
 }
 
 void controlPage() {
@@ -217,21 +222,16 @@ void controlPage() {
   fill(P2.c);
   rect(width*2.5/3, height*6/numberLines, rectWidth, rectHeight*3);
   pop();
-  float lineH = controlsPosY+3;
-  if (controlsPosY > 1) {
-    //lineH =  +
-    println(((controlsPosY+1)%3),((controlsPosY+1)%3)*rectHeight);
-  }
-  if(controlsPosY<=1){
+  if (controlsPosY <= 1) {
     line(width*2/3-10, height/numberLines*(controlsPosY+3)+5, 
-         width*2/3+10, height/numberLines*(controlsPosY+3)+5);
-  }else{
+      width*2/3+10, height/numberLines*(controlsPosY+3)+5);
+  } else {
     line(width*2/3-10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5, 
-         width*2/3+10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5);
+      width*2/3+10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5);
   }
 
   text("Press ENTER to play", width/2, height*8/numberLines);
-  text("Press H to go to HELP", width/2, height*9/numberLines);
+  text("Press H to go to HOW TO PLAY", width/2, height*9/numberLines);
   lengthTunnel = controls[0]*10;
   mode = controls[1];
   P1.c = color(controls[2]*15, controls[3]*15, controls[4]*15);
