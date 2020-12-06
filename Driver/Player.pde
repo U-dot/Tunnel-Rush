@@ -1,7 +1,6 @@
 class Player {
   //Atributos
-  //boolean[] keys = {false, false, false, false};
-  color c;
+  color c = color(int(random(255)), int(random(255)), int(random(255)));
   float radius;
   float angle;
 
@@ -9,12 +8,10 @@ class Player {
   Player(float r, float a) {
     radius = r;
     angle = a;
-    c= color(int(random(255)) , int(random(255)), int(random(255)) );
   }
 
   //Métodos
   void drawP() {
-    push();
     translate(width/2, height/2, 300);
     fill(c);
     stroke(c);
@@ -22,13 +19,8 @@ class Player {
     if (radians(angle)%TWO_PI == 0) {
       angle = 0;
     }
-    /*if (keys[0] || keys[2]) {
-     angle += 1.5;
-     } else if (keys[1] || keys[3]) {
-     angle -= 1.5;
-     }*/
-     pop();
   }
+
   void keyPressed1() {
     if (keyPressed) {
       if (key == CODED) {
