@@ -30,7 +30,7 @@ class Obstacle {
     fill(c);
     translate(width/2, height/2, z-posZ*distanceTunnel);
     for (int i = 0; i < number; i++) {
-      polygon3D(oba[i], type, radius, size, deepness,true);
+      polygon3D(oba[i], type, radius, size, deepness, true);
     }
     pop();
   }
@@ -39,19 +39,19 @@ class Obstacle {
 void colisiones(Obstacle obstacle1, Player p) {
   boolean colission=false;
   for (int i = 0; i < obstacle1.number; i++) {
-    if (abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI) %TWO_PI <= 0.46 ){
+    if (abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI) %TWO_PI <= 0.46 ) {
       colission=true;
     }
-    if( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= TWO_PI){
-      if( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI >= 5.8){
+    if ( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= TWO_PI) {
+      if ( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI >= 5.8) {
         colission=true;
       }
     }
-    if(colission){
-      if ((z-obstacle1.posZ*distanceTunnel)%100 >= 0){
-        if( (z-obstacle1.posZ*distanceTunnel)%100 <= 20){
-          if( z-obstacle1.posZ*distanceTunnel >= 299) {
-            page=3;
+    if (colission) {
+      if ((z-obstacle1.posZ*distanceTunnel)%100 >= 0) {
+        if ( (z-obstacle1.posZ*distanceTunnel)%100 <= 20) {
+          if ( z-obstacle1.posZ*distanceTunnel >= 299) {
+            page = 3;
           }
         }
       }
