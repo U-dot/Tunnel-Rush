@@ -1,21 +1,21 @@
 void drawTunnel(int numberTunnels) {
-  //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-  //camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
-  //Descomentar lo anterior para ver el tunel desde afuera
-  for(int j = 0; j < numberTunnels; j++){
+  for (int j = 0; j < numberTunnels; j++) {
     push();
     camera();
     translate((j*2+1)*width/2/numberTunnels, height/2, z);
-    stroke(255);//int(random(255)), int(random(255)), int(random(255))
+    stroke(255);
     noFill();
     for (int i = -3; i <= lengthTunnel; i++) {
-      stroke(int(random(255)), int(random(255)), int(random(255)));
+      //stroke(int(random(255)), int(random(255)), int(random(255)));
       translate(0, 0, -i*distanceTunnel);
+      if(controls[1] == 0){
       circle( cos(radians(P1.angle))*playerRadius/numberTunnels, sin(radians(P1.angle))*playerRadius/numberTunnels, playerSize/numberTunnels);
+      } else if(controls[1] == 1) {
       circle( cos(radians(P2.angle))*playerRadius/numberTunnels, sin(radians(P2.angle))*playerRadius/numberTunnels, playerSize/numberTunnels);
+      circle( cos(radians(P1.angle))*playerRadius/numberTunnels, sin(radians(P1.angle))*playerRadius/numberTunnels, playerSize/numberTunnels);
+      }
       polygon((playerRadius+playerSize)/numberTunnels, sidesTunnel);
-      polygon3D(0,sidesTunnel,0,playerRadius+playerSize,distanceTunnel,false);
-      //float angle1, int type, int radius, int size, int deepness, boolean cover
+      polygon3D(0, sidesTunnel, 0, playerRadius+playerSize, distanceTunnel, false);
       translate(0, 0, i*distanceTunnel);
     }
     pop();
@@ -42,21 +42,18 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness, boole
   push();
   translate(x, y);
   rotate(PI/4);
-  
-  if (type==3) {
+  if (type == 3) {
     rotate(angle1+PI/type-PI/4);
   }//Lo único que diferencia tri de cuatro
-  if(cover){
+  if (cover) {
     polygon(size, type);
-  }else{
+  } else {
+    //fill(0);
     rotate(TWO_PI/sidesTunnel);
-    fill(0);
   }
-
   float sx, sy, a=0;
   float sx1 = cos(a) * radiusPoly;
   float sy1 = sin(a) * radiusPoly;
-
   while (a < TWO_PI) {
     sx = sx1;
     sy = sy1;
