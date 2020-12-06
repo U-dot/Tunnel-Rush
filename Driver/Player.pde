@@ -1,17 +1,28 @@
+/**
+ *This class define objects that represents the player
+ */
 class Player {
-  //Atributos
+  //Instances
   color c;
   float radius;
   float angle;
 
-  //Constructor
-  Player(float r, float a,color c1) {
+  /**
+  *Constructor
+  *@param r defines the player movement radius inside the tunnel
+  *@param a defines the player initial angle inside the tunnel
+  *@param c defines the player color
+  */
+  Player(float r, float a, color c) {
     radius = r;
     angle = a;
-    c=c1;
+    this.c = c;
   }
 
-  //Métodos
+  //Methods
+  /**
+   *This method represents the player inside the tunnel
+   */
   void drawP() {
     translate(width/2, height/2, 300);
     fill(c);
@@ -22,6 +33,9 @@ class Player {
     }
   }
 
+  /**
+   *This method makes posible to controls the player movement in game with keyboard keys (right and left arrows)
+   */
   void keyPressed1() {
     if (keyPressed) {
       if (key == CODED) {
@@ -34,6 +48,9 @@ class Player {
     }
   }
 
+  /**
+   *This method makes posible to controls the player movement in game with the mouse
+   */
   void Mouse() {
     if (mousePressed) {
       if (mouseButton == RIGHT) {
