@@ -1,5 +1,8 @@
+/**
+ *This class define objects that represents the obstacles placed inside the tunnel
+ */
 class Obstacle {
-  //Atributos
+  //Instances
   float angle;
   int posZ;
   int type;
@@ -7,11 +10,16 @@ class Obstacle {
   int radius = playerRadius;
   int size = playerRadius/3;
   int deepness = 20;
-  //Múltiplos de n=3 o n=4 son varias veces el obstáculo n
   color c = color(int(random(255)) , int(random(255)), int(random(255)) );
   float[] oba;
 
-  //Constructor
+  /**
+   *Constructor
+   *@param posZ defines obstacles z position
+   *@param angle defines obstacles angle inside the tunnel
+   *@param type defines obstacles form
+   *@param number defines number of obstacles to be represented
+   */
   Obstacle(int posZ, float angle, int type, int number) {
     this.posZ = posZ;
     this.angle = angle;
@@ -23,12 +31,15 @@ class Obstacle {
     }
   }
 
-  //Método_Función
+  //Methods
+  /**
+   *This method calls the function polygon3D() to create the obstacles and set them in order inside the tunnel 
+   */
   void display() {
     push();
     stroke(0);
     fill(c);
-    translate(width/2, height/2, z-posZ*distanceTunnel);
+    translate(width/2, height/2, z - posZ*distanceTunnel);
     for (int i = 0; i < number; i++) {
       polygon3D(oba[i], type, radius, size, deepness, true);
     }
@@ -36,6 +47,9 @@ class Obstacle {
   }
 }
 
+/**
+ *Compare the angles of the player and the obstacles immediately in front of it to verify if they crush
+ */
 void colisiones(Obstacle obstacle1, Player p) {
   boolean colission=false;
   for (int i = 0; i < obstacle1.number; i++) {
@@ -52,7 +66,6 @@ void colisiones(Obstacle obstacle1, Player p) {
         if ( (z-obstacle1.posZ*distanceTunnel)%100 <= 20) {
           if ( z-obstacle1.posZ*distanceTunnel >= 299) {
             page = 3;
-            print("GAME OVER");
           }
         }
       }
