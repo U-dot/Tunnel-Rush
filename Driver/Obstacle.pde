@@ -52,6 +52,7 @@ void colisiones(Obstacle obstacle1, Player p) {
         if ( (z-obstacle1.posZ*distanceTunnel)%100 <= 20) {
           if ( z-obstacle1.posZ*distanceTunnel >= 299) {
             page = 3;
+            print("GAME OVER");
           }
         }
       }

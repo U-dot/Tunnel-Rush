@@ -20,7 +20,7 @@ void setup() {
   obstacles = new ArrayList<Obstacle>();
   P1 = new Player(playerRadius, 0);
   P2 = new Player(playerRadius, PI);
-  font = createFont("data-latin.ttf", width/20);
+  font = createFont("data-latin.ttf", width/18);
 }
 
 void draw() {
@@ -96,118 +96,66 @@ void introPage() {
 }
 
 void gamePage() {
-  if (controls[1] == 0) {
-    drawTunnel(1);
-    for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
-      obstacles.get(i).display();
-    }
-    push();
-    P1.drawP();
-    P1.keyPressed1();
-    pop();
-    z++;
-    if (z > (lengthTunnel+3)*distanceTunnel) {
-      page = 4;
-    }
-    if (obstacles.size() > 0) {
-      colisiones(obstacles.get(0), P1);
-      if ((z - obstacles.get(0).posZ*distanceTunnel)%100 == obstacles.get(0).deepness + 1 && z - obstacles.get(0).posZ*distanceTunnel >= 299) {
-        obstacles.remove(0);
-      }
-    }
-    if (keyPressed && key == CODED) {
-      if (keyCode == LEFT) {
-        theta += 2;
-      } else if (keyCode == RIGHT) {
-        theta -= 2;
-      } else if (keyCode == CONTROL) {
-        z -= 3;
-      }
-    }
-  } else if (controls[1] == 1) {
-    drawTunnel(1);
-    for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
-      obstacles.get(i).display();
-    }
-    push();
-    P1.drawP();
-    P1.keyPressed1();
-    pop();
-    push();
-    P2.drawP();
-    P2.Mouse();
-    pop();
-    z++;
-    if (z > (lengthTunnel+3)*distanceTunnel) {
-      page = 4;
-    }
-    if (obstacles.size() > 0) {
-      colisiones(obstacles.get(0), P1);
-      colisiones(obstacles.get(0), P2);
-      if ((z-obstacles.get(0).posZ*distanceTunnel)%100 == obstacles.get(0).deepness+1 && z-obstacles.get(0).posZ*distanceTunnel >= 299) {
-        obstacles.remove(0);
-      }
-    }
-    if (keyPressed && key == CODED) {
-      if (keyCode == LEFT) {
-        theta += 2;
-      } else if (keyCode == RIGHT) {
-        theta -= 2;
-      } else if (keyCode == CONTROL) {
-        z -= 3;
-      }
-    }
-  } else {
-    drawTunnel(2);
-    for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
+  if(mode!=2){drawTunnel(1);}
+  if(mode==2){drawTunnel(2);}
+  for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
+    if(mode==2){
       push();
       translate(width/4,0,0);
-      obstacles.get(i).display();
+    }
+    obstacles.get(i).display();
+    if(mode==2){
       pop();
       push();
       translate(-width/4,0,0);
       obstacles.get(i).display();
       pop();
     }
+  }
+  push();
+  if(mode==2){translate(width/4,0,0);}
+  P1.drawP();
+  P1.keyPressed1();
+  pop();
+  if(mode!=0){
     push();
-    translate(width/4,0,0);
-    P1.drawP();
-    P1.keyPressed1();
-    pop();
-    push();
-    translate(-width/4,0,0);
+    if(mode==2){translate(-width/4,0,0);}
     P2.drawP();
     P2.Mouse();
     pop();
-    z++;
-    if (z > (lengthTunnel+3)*distanceTunnel) {
-      page = 4;
-    }
-    if (obstacles.size() > 0) {
-      colisiones(obstacles.get(0), P1);
-      colisiones(obstacles.get(0), P2);
-      if ((z-obstacles.get(0).posZ*distanceTunnel)%100 == obstacles.get(0).deepness+1 && z-obstacles.get(0).posZ*distanceTunnel >= 299) {
+  }
+  if (obstacles.size() > 0) {
+    colisiones(obstacles.get(0), P1);
+    if(mode!=0){colisiones(obstacles.get(0), P2);}
+    if ((z - obstacles.get(0).posZ*distanceTunnel)%100 == obstacles.get(0).deepness + 1){
+      if(z - obstacles.get(0).posZ*distanceTunnel >= 299) {
         obstacles.remove(0);
       }
     }
-    if (keyPressed && key == CODED) {
-      if (keyCode == LEFT) {
-        theta += 2;
-      } else if (keyCode == RIGHT) {
-        theta -= 2;
-      } else if (keyCode == CONTROL) {
-        z -= 3;
-      }
+  }
+  if (z > (lengthTunnel+3)*distanceTunnel) {
+    page = 4;
+  }
+  z++;
+  if (keyPressed && key == CODED) {
+    if (keyCode == LEFT) {
+      theta += 2;
+    } else if (keyCode == RIGHT) {
+      theta -= 2;
+    } else if (keyCode == CONTROL) {
+      z += 3;
     }
   }
 }
 
 void gameOverPage() {
   background(0);
+  //Toca cambiar esto de acuerdo al modo
   drawTunnel(1);
   for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
     obstacles.get(i).display();
   }
+  textSize(width/18);
   text("GAME OVER", width/2, height/2, z);
 }
 
@@ -305,7 +253,7 @@ void resetGame() {
     angle = random(TWO_PI);
     obstacles.add(new Obstacle(i*2, angle, typePoly, numberPoly));
   }
-  controlsPosX = 0; 
+  controlsPosX = 0;
   controlsPosY = 0;
   controls[0] = lengthTunnel/5;
   controls[1] = mode;
