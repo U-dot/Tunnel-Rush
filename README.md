@@ -3,25 +3,20 @@ Versión propia del juego llamado [TUNNEL RUSH](https://www.1001juegos.com/juego
 en programación orientada a objetos.
 
 ## Objetivo del juego
-El objetivo del juego es llegar al final de un túnel lleno de obstáculos esquivandolos girando dentro de este último y, dependiendo del modo de juego, compitiendo contra otro jugador.
+  El objetivo del juego es llegar al final de un túnel lleno de obstáculos esquivandolos girando dentro de este último y, dependiendo del modo de juego,
+  compitiendo contra otro jugador.
 
 ## Controles
-Cuando se oprime
-
-#### &uarr;
-  Los tetrominos rotan.
+Cuando se oprime:
 
   #### &larr; &rarr;
-  Los tetrominos se desplazan horizontalmente.
+  El jugador (1) rota hacia la izquierda o derecha dentro del túnel, respectivamente.
 
-  #### &darr;
-  Los tetrominos caen hasta el fondo.
-
-  #### ctrl
-  El juego para o continua.
-
-  ## Representación
-  Este juego representa el tablero y los Tetrominos mediante las clases Board y Piece, respectivamente.
+  ####´mousePressed´;
+  El jugador (2) rota hacia la izquierda o derecha dentro del túnel, respectivamente.
+  
+## Representación
+  Este juego representa el túnel como una función y los jugadores y los obstaculos mediante las clases Player y Obstacles, respectivamente.
 
   ### Tetrominos
   Cada Tetromino (u objeto de la clase Piece) tiene 5 atributos:
