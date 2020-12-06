@@ -8,6 +8,7 @@ int controlsPosX = 0, controlsPosY = 0;
 int numberControls = 8;
 int[] controls = new int[numberControls];
 int mode = 0;
+float difTunnelPVP;
 PFont font;
 ArrayList<Obstacle> obstacles;
 Player P1, P2;
@@ -17,15 +18,18 @@ void setup() {
   textAlign(CENTER);
   rectMode(CENTER);
   playerRadius = height/10;
+  difTunnelPVP=width/4;
   obstacles = new ArrayList<Obstacle>();
-  P1 = new Player(playerRadius, 0);
-  P2 = new Player(playerRadius, PI);
+  P1 = new Player(playerRadius, 0,color(50,200,150));
+  P2 = new Player(playerRadius, PI,color(200,50,150));
   font = createFont("data-latin.ttf", width/18);
 }
 
 void draw() {
   background(20);
   pageSelector();
+  //camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  
 }
 
 void keyPressed() {
@@ -84,9 +88,7 @@ void pageSelector() {//Escoge la página
   }
 }
 
-void introPage() {
-  //camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
-  drawTunnel(1);
+void introPage() {drawTunnel();
   textFont(font);
   int numberLines = 11;
   text("TUNNEL RUSH", width/2, height/3);
@@ -96,62 +98,51 @@ void introPage() {
 }
 
 void gamePage() {
-  if(mode!=2){drawTunnel(1);}
-  if(mode==2){drawTunnel(2);}
+  drawTunnel();
   for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
-    if(mode==2){
-      push();
-      translate(width/4,0,0);
-    }
     obstacles.get(i).display();
-    if(mode==2){
-      pop();
-      push();
-      translate(-width/4,0,0);
-      obstacles.get(i).display();
-      pop();
-    }
   }
   push();
-  if(mode==2){translate(width/4,0,0);}
   P1.drawP();
   P1.keyPressed1();
   pop();
   if(mode!=0){
     push();
-    if(mode==2){translate(-width/4,0,0);}
     P2.drawP();
     P2.Mouse();
     pop();
   }
   if (obstacles.size() > 0) {
     colisiones(obstacles.get(0), P1);
-    if(mode!=0){colisiones(obstacles.get(0), P2);}
+    if(mode==1){colisiones(obstacles.get(0), P2);}
     if ((z - obstacles.get(0).posZ*distanceTunnel)%100 == obstacles.get(0).deepness + 1){
       if(z - obstacles.get(0).posZ*distanceTunnel >= 299) {
         obstacles.remove(0);
       }
     }
   }
-  if (z > (lengthTunnel+3)*distanceTunnel) {
+  if (z > (lengthTunnel+4)*distanceTunnel) {
     page = 4;
   }
   z++;
   if (keyPressed && key == CODED) {
     if (keyCode == LEFT) {
-      theta += 2;
+      //difTunnelPVP++;
+      theta++;
     } else if (keyCode == RIGHT) {
-      theta -= 2;
+      //difTunnelPVP--;
+      theta--;
     } else if (keyCode == CONTROL) {
       z += 3;
     }
+    println(difTunnelPVP,theta);
   }
 }
 
 void gameOverPage() {
   background(0);
   //Toca cambiar esto de acuerdo al modo
-  drawTunnel(1);
+  drawTunnel();
   for (int i = 0; i < obstacles.size(); i++) { //Se llaman a los obstaculos
     obstacles.get(i).display();
   }
@@ -181,10 +172,10 @@ void controlPage() {
     controlsPosY = 0;
   } else if (controls[0] < 0 || controls[0] > 100) {
     controls[0] = 0;
-  } else if (controls[1] > 2) {
+  } else if (controls[1] > 1) {
     controls[1] = 0;
   } else if (controls[1] < 0) {
-    controls[1] = 2;
+    controls[1] = 1;
   }
   for (int i = 2; i < numberControls; i++) {
     if (controls[i] > 16) {
@@ -196,8 +187,7 @@ void controlPage() {
   }
   stroke(255);
   int numberLines = 10;
-  float rectWidth = width/13, rectHeight = width/40;
-  float lineH = controlsPosY;
+  float rectWidth = width/13, rectHeight = height/40;
   stroke(255);
   text("Game controls stack", width/2, height/numberLines);
   text("Distance:", width/3, height*3/numberLines);
@@ -227,10 +217,19 @@ void controlPage() {
   fill(P2.c);
   rect(width*2.5/3, height*6/numberLines, rectWidth, rectHeight*3);
   pop();
+  float lineH = controlsPosY+3;
   if (controlsPosY > 1) {
-    lineH = int((controlsPosY+1)/3)+1+((controlsPosY+1)%3-1)*rectHeight;
+    //lineH =  +
+    println(((controlsPosY+1)%3),((controlsPosY+1)%3)*rectHeight);
   }
-  line(width*2/3-10, height/numberLines*(lineH+3)+5, width*2/3+10, height/numberLines*(lineH+3)+5);
+  if(controlsPosY<=1){
+    line(width*2/3-10, height/numberLines*(controlsPosY+3)+5, 
+         width*2/3+10, height/numberLines*(controlsPosY+3)+5);
+  }else{
+    line(width*2/3-10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5, 
+         width*2/3+10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5);
+  }
+
   text("Press ENTER to play", width/2, height*8/numberLines);
   text("Press H to go to HELP", width/2, height*9/numberLines);
   lengthTunnel = controls[0]*10;
@@ -241,8 +240,8 @@ void controlPage() {
 
 void resetGame() {
   z = 0;
-  P1 = new Player(playerRadius, 0);
-  P2 = new Player(playerRadius, PI);
+  P1 = new Player(playerRadius, 0, P1.c);
+  P2 = new Player(playerRadius, PI, P2.c);
   obstacles= new ArrayList<Obstacle>();
   int typePoly = 0;
   int numberPoly = 0;

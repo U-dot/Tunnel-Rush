@@ -1,13 +1,14 @@
 class Player {
   //Atributos
-  color c = color(int(random(255)), int(random(255)), int(random(255)));
+  color c;
   float radius;
   float angle;
 
   //Constructor
-  Player(float r, float a) {
+  Player(float r, float a,color c1) {
     radius = r;
     angle = a;
+    c=c1;
   }
 
   //Métodos

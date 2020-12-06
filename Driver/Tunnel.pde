@@ -1,25 +1,22 @@
-void drawTunnel(int numberTunnels) {
-  for (int j = 0; j < numberTunnels; j++) {
-    push();
-    camera();
-    translate((j*2+1)*width/2/numberTunnels, height/2, z);
-    stroke(255);
-    noFill();
-    for (int i = -3; i <= lengthTunnel; i++) {
-      //stroke(int(random(255)), int(random(255)), int(random(255)));
-      translate(0, 0, -i*distanceTunnel);
-      if(controls[1] == 0){
-      circle( cos(radians(P1.angle))*playerRadius/numberTunnels, sin(radians(P1.angle))*playerRadius/numberTunnels, playerSize/numberTunnels);
-      } else if(controls[1] == 1) {
-      circle( cos(radians(P2.angle))*playerRadius/numberTunnels, sin(radians(P2.angle))*playerRadius/numberTunnels, playerSize/numberTunnels);
-      circle( cos(radians(P1.angle))*playerRadius/numberTunnels, sin(radians(P1.angle))*playerRadius/numberTunnels, playerSize/numberTunnels);
-      }
-      polygon((playerRadius+playerSize)/numberTunnels, sidesTunnel);
-      polygon3D(0, sidesTunnel, 0, playerRadius+playerSize, distanceTunnel, false);
-      translate(0, 0, i*distanceTunnel);
+void drawTunnel() {
+  push();
+  translate(width/2, height/2, z);
+  stroke(255);
+  noFill();
+  for (int i = -3; i <= lengthTunnel; i++) {
+    //stroke(int(random(255)), int(random(255)), int(random(255)));
+    translate(0, 0, -i*distanceTunnel);
+    if(controls[1] == 0){
+    circle( cos(radians(P1.angle))*playerRadius, sin(radians(P1.angle))*playerRadius, playerSize);
+    } else if(controls[1] == 1) {
+    circle( cos(radians(P2.angle))*playerRadius, sin(radians(P2.angle))*playerRadius, playerSize);
+    circle( cos(radians(P1.angle))*playerRadius, sin(radians(P1.angle))*playerRadius, playerSize);
     }
-    pop();
+    polygon(playerRadius+playerSize, sidesTunnel);
+    polygon3D(0, sidesTunnel, 0,playerRadius+playerSize,distanceTunnel, false);
+    translate(0, 0, i*distanceTunnel);
   }
+  pop();
 }
 
 void polygon(float apotema, int npoints) {
@@ -48,7 +45,7 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness, boole
   if (cover) {
     polygon(size, type);
   } else {
-    //fill(0);
+    fill(0);
     rotate(TWO_PI/sidesTunnel);
   }
   float sx, sy, a=0;
