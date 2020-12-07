@@ -1,8 +1,10 @@
-/*
-Tunnel Rush game by U-dot and JJFigpad
-Made on November/December 2020
-More info on https://github.com/U-dot/Tunnel-Rush
-*/
+/**
+ *Tunnel Rush game
+ *@author: María Sol Botello
+ *@author: Juan Jose Figueroa
+ *More info on https://github.com/U-dot/Tunnel-Rush
+ */
+
 //Global variables
 int z = 0, page = 1, theta = 1;
 int distanceTunnel = 100;//Distance within each polygon of the tunnel
@@ -26,6 +28,7 @@ void setup() {
   obstacles = new ArrayList<Obstacle>();
   P1 = new Player(playerRadius, 0, color(150,200,100));
   P2 = new Player(playerRadius, PI, color(100,150,200));
+  resetGame();
   font = createFont("data-latin.ttf", width/18);
   textFont(font);
   fill(255);
@@ -119,9 +122,9 @@ void gamePage() {
     pop();
   }
   if (obstacles.size() > 0) {
-    colisiones(obstacles.get(0), P1);
+    wreck(obstacles.get(0), P1);
     if (mode == 1) {
-      colisiones(obstacles.get(0), P2);
+      wreck(obstacles.get(0), P2);
     }
     if ((z - obstacles.get(0).posZ*distanceTunnel)%100 >= obstacles.get(0).deepness + 1) {
       if (z - obstacles.get(0).posZ*distanceTunnel > 299) {
