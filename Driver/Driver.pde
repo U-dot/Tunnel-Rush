@@ -22,10 +22,12 @@ void setup() {
   P1 = new Player(playerRadius, 0, color(150,200,100));
   P2 = new Player(playerRadius, PI, color(100,150,200));
   font = createFont("data-latin.ttf", width/18);
+  textFont(font);
+  fill(255);
 }
 
 void draw() {
-  background(20);
+  background(0);
   pageSelector();
 }
 
@@ -65,7 +67,7 @@ void keyPressed() {
 /**
  *Select actual page
  */
-void pageSelector() {//Escoge la página
+void pageSelector() {
   switch(page) {
   case 1:
     introPage();
@@ -90,7 +92,6 @@ void pageSelector() {//Escoge la página
 
 void introPage() {
   drawTunnel();
-  textFont(font);
   text("TUNNEL RUSH", width/2, height/3);
   text("PRESS ENTER TO PLAY", width/2, height*8/11);
   text("Press I to go to instructions", width/2, height*9/11);
@@ -126,7 +127,7 @@ void gamePage() {
   if (z > (lengthTunnel+4)*distanceTunnel) {
     page = 4;//victory page
   }
-  z += 2;//Pos in z
+  z += 4;//Pos in z
   if (keyPressed) {
     if (keyCode == LEFT) {
       theta++;
@@ -134,7 +135,7 @@ void gamePage() {
       //difTunnelPVP--;
       theta--;
     } else if (key == 32) {
-      z += 3;
+      z -= 4;
     }
   }
 }
@@ -151,7 +152,7 @@ void gameOverPage() {
 void helpPage() {
   text("Instructructions", width/2, height/4);
   text("Player 1: left/right arrows \nPlayer 2: mouse buttons."
-        +"\n Press SPACE to go faster. \nGo through the tunnel without"
+        +" \nGo through the tunnel without"
         +"\ncrashing into any obstacle.\n Happy gaming :3",
     width/2, height*2/4-60);
   text("Press ENTER to play", width/2, height*3/4+60);
@@ -191,7 +192,7 @@ void controlPage() {
       controls[i] = 16;
     }
   }
-  
+
   //Just text and graphs
   stroke(255);
   int numberLines = 10;
@@ -233,8 +234,8 @@ void controlPage() {
       width*2/3+10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5);
   }
   text("Press ENTER to play", width/2, height*8/numberLines);
-  text("Press H to go to HOW TO PLAY", width/2, height*9/numberLines);
-  
+  text("Press I to go to instructions", width/2, height*9/numberLines);
+
   //Reassignates variables
   lengthTunnel = controls[0]*10;
   mode = controls[1];
