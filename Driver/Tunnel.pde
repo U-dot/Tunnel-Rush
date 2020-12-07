@@ -9,7 +9,7 @@ void drawTunnel() {
   for (int i = -3; i <= lengthTunnel; i++) {
     stroke(int(random(255)), int(random(255)), int(random(255)));
     translate(0, 0, -i*distanceTunnel);
-    polygon((playerRadius+playerSize), sidesTunnel);
+    //polygon((playerRadius+playerSize), sidesTunnel);
     polygon3D(0, sidesTunnel, 0, playerRadius+playerSize, distanceTunnel, false);
     translate(0, 0, i*distanceTunnel);
   }

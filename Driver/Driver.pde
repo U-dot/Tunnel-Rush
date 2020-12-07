@@ -1,3 +1,8 @@
+/*
+Tunnel Rush game by U-dot and JJFigpad
+Made on November/December 2020
+More info on https://github.com/U-dot/Tunnel-Rush
+*/
 //Global variables
 int z = 0, page = 1, theta = 1;
 int distanceTunnel = 100;//Distance within each polygon of the tunnel
@@ -127,7 +132,7 @@ void gamePage() {
   if (z > (lengthTunnel+4)*distanceTunnel) {
     page = 4;//victory page
   }
-  z += 4;//Pos in z
+  z += 6;//Pos in z
   if (keyPressed) {
     if (keyCode == LEFT) {
       theta++;
@@ -135,7 +140,7 @@ void gamePage() {
       //difTunnelPVP--;
       theta--;
     } else if (key == 32) {
-      z -= 4;
+      z -= 5;
     }
   }
 }
