@@ -1,6 +1,8 @@
 /**
+ *Tunnel Rush game
  *@author: Maria Sol Botello
  *@author: Juan Jose Figueroa
+ *More info on https://github.com/U-dot/Tunnel-Rush
  */
  
 //Global variables
@@ -26,6 +28,7 @@ void setup() {
   obstacles = new ArrayList<Obstacle>();
   P1 = new Player(playerRadius, 0, color(150,200,100));
   P2 = new Player(playerRadius, PI, color(100,150,200));
+  resetGame();
   font = createFont("data-latin.ttf", width/18);
   textFont(font);
   fill(255);
