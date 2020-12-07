@@ -1,3 +1,8 @@
+/**
+ *@author: Maria Sol Botello
+ *@author: Juan Jose Figueroa
+ */
+ 
 //Global variables
 int z = 0, page = 1, theta = 1;
 int distanceTunnel = 100;//Distance within each polygon of the tunnel
