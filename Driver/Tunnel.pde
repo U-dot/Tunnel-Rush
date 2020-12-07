@@ -53,11 +53,11 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness, boole
   if (type == 3) {//To adjust the triangle obstacles
     rotate(angle1+PI/type-PI/4);
   }
-  if (cover) {//Puts a cover on
+  if (cover) {
     polygon(size, type);
-  } else {
-    if(page!=1){fill(0);}
-    rotate(TWO_PI/sidesTunnel);//To adjust tunnel
+  } else if(!cover && (page == 2 || page == 3)) {
+    fill(0);
+    rotate(TWO_PI/sidesTunnel);
   }
   float sx, sy, a=0;
   float sx1 = cos(a) * radiusPoly;
