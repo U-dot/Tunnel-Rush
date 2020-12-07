@@ -63,7 +63,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
    + Número de lados del polígono `type`
 
-   + Número de sub-obstáculos `number`
+   + Número de polígonos `number`
 
    + Tamaño `size`
 
@@ -71,13 +71,15 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
    + Ángulos de cada uno de los sub-obstáculos`[] oba`
 
-   El número de sub-obstáculos es el número de obstáculos en una misma posición en el tunel.
-
    Y un método:
 
    + `display()` Dibuja el obstáculo en el túnel
 
-   Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad usando la función `polygon3D(...)`.
+   Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad o extensión usando la función `polygon3D(...)`.
+   
+   En la imagen se puede ver la construcción por detrás de un obstáculo de 4 polígonos de 4 lados.
+   
+   ![Construcción obstáculos](https://user-images.githubusercontent.com/71671790/101383343-00cb5c80-3887-11eb-832e-8426b8b6b7c9.png)
    
 ## Manejo de colisiones
   El manejo de las colisiones es controlado mediante la función `wreck(...)`, la cual recibe de parámetros un objeto `Obstacles` y un objeto `Player`.
