@@ -92,4 +92,6 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
   
 ## Bibliografía
   + https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=646:documentar-proyectos-java-con-javadoc-comentarios-simbolos-tags-deprecated-param-etc-cu00680b&catid=68&Itemid=188
-  
+  + https://gist.github.com/Villanuevand/6386899f70346d4580c723232524d35a
+  + https://discourse.processing.org/t/keypressed-for-multiple-keys-pressed-at-the-same-time/18892
+  + https://forum.processing.org/two/discussion/16594/can-multiple-keys-be-pressed-on-the-keyboard
