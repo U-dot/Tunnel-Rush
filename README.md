@@ -15,7 +15,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
   El jugador (2) rota hacia la izquierda o derecha dentro del túnel, respectivamente.
 
 ## Modos de juego
-Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel.
+  Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel.
 
 ## Páginas
   En la pestaña Driver.pde se encuentran un grupo de funciones `Pages()`, las cuales están divididas en `introPage()`, `gamePage()`, `gameOverPage()`,  `victoryPage()`, `helpPage()` y `controlPage()`.
@@ -80,7 +80,7 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
    Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad usando la función `polygon3D(...)`.
    
 ## Manejo de colisiones
-  Mediante la función `wreck(...)`, la cual recibe de parámetros un objeto `Obstacles` y un objeto `Player`.
+  El manejo de las colisiones es controlado mediante la función `wreck(...)`, la cual recibe de parámetros un objeto `Obstacles` y un objeto `Player`.
 
   Esta función compara los ángulos de cada uno de los objetos y determina mediante su resta si existe una colision entre ellos o no. En caso positivo, aparecerá     en pantalla la `gameOverPage()`, y en caso negativo el o los jugadores seguirán jugando, y el objeto dejado atrás será borrado y procederá a realizar el mismo     proceso con el siguiente obstáculo.
 
