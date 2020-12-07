@@ -2,15 +2,12 @@
 
 # Tunnel Rush in Processing
 Versión propia del juego llamado [TUNNEL RUSH](https://www.1001juegos.com/juego/color-tunnel)
-en programación orientada a objetos. Para su uso, descargar la carpeta driver y correr todos los archivos `.pde` de manera simultánea.
+en programación orientada a objetos en [processing](https://processing.org/). Para su uso, descargar la carpeta `driver` y correr todos los archivos `.pde` de manera simultánea.
 
 ## Objetivo del juego
-  El objetivo del juego es llegar al final de un túnel lleno de obstáculos esquivandolos girando dentro de este último y, dependiendo del modo de juego,
-  compitiendo contra otro jugador.
+  El objetivo de este juego es que el o los jugadores lleguen al final de un túnel lleno de obstáculos girando para esquivarlos mientras avanzan a una alta         velocidad.
 
 ## Controles
-Cuando se oprime:
-
   #### &larr; &rarr;
   El jugador (1) rota hacia la izquierda o derecha dentro del túnel, respectivamente.
 
