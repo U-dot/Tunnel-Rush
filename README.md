@@ -76,10 +76,20 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
 
    + Ángulos de cada uno de los sub-obstáculos`[] oba`
 
-  El número de sub-obstáculos es el número de obstáculos en una misma posición en el tunel.
+   El número de sub-obstáculos es el número de obstáculos en una misma posición en el tunel.
 
-  Y un método:
+   Y un método:
 
-  + `display()` Dibuja el obstáculo en el túnel
+   + `display()` Dibuja el obstáculo en el túnel
 
-  Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad usando la función `polygon3D(...)`.
+   Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad usando la función `polygon3D(...)`.
+  
+## Conclusiones
+  
+  
+## Trabajo a futuro
+  Un modo PVP manejando 2 camaras a media pantalla.
+  
+## Bibliografía
+  + https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=646:documentar-proyectos-java-con-javadoc-comentarios-simbolos-tags-deprecated-param-etc-cu00680b&catid=68&Itemid=188
+  
