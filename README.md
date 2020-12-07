@@ -88,7 +88,7 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
   
   
 ## Trabajo a futuro
-  Para un trabajo futuro pensamos en implementar yn modo PVP manejando 2 cámaras a media pantalla, y que estas se muevan dentro del túnel a medida que cada         jugador gira dentro de su propio túnel. También se quiere incluir la rotación del túnel junto con los obstáculos, además de lograr que se pueda jugar por el       exterior del túnel.
+  Para un trabajo futuro se piensa en implementar un modo PVP manejando 2 cámaras a media pantalla, y que estas se muevan dentro del túnel a medida que cada         jugador gira dentro de su propio túnel. También se quiere incluir la rotación del túnel junto con los obstáculos, además de lograr que se pueda jugar por el       exterior del túnel.
   
 ## Bibliografía
   + https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=646:documentar-proyectos-java-con-javadoc-comentarios-simbolos-tags-deprecated-param-etc-cu00680b&catid=68&Itemid=188
