@@ -114,9 +114,9 @@ void gamePage() {
     pop();
   }
   if (obstacles.size() > 0) {
-    colisiones(obstacles.get(0), P1);
+    wreck(obstacles.get(0), P1);
     if (mode == 1) {
-      colisiones(obstacles.get(0), P2);
+      wreck(obstacles.get(0), P2);
     }
     if ((z - obstacles.get(0).posZ*distanceTunnel)%100 >= obstacles.get(0).deepness + 1) {
       if (z - obstacles.get(0).posZ*distanceTunnel > 299) {
