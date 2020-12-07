@@ -3,15 +3,15 @@
  */
 class Obstacle {
   //Instances
-  float angle;
+  float angle;//Pos theta with respect to the x-axis
   int posZ;
-  int type;
-  int number;
-  int radius = playerRadius;
+  int type;//Number of sides of the obstacle(3 or 4)
+  int number;//Number of sub-obstacles
+  int radius = playerRadius;//Distance to the origin
   int size = playerRadius/3;
   int deepness = 20;
   color c = color(int(random(255)) , int(random(255)), int(random(255)) );
-  float[] oba;
+  float[] oba;//Saves the angles of each sub-obstacle
 
   /**
    *Constructor
@@ -26,7 +26,7 @@ class Obstacle {
     this.type = type;
     this.number = number;
     oba = new float[number];
-    for (int i = 0; i < number; i++) {
+    for (int i = 0; i < number; i++) {//Angle of each substacle
       oba[i] = angle+TWO_PI/number*(i+1);
     }
   }
@@ -44,31 +44,5 @@ class Obstacle {
       polygon3D(oba[i], type, radius, size, deepness, true);
     }
     pop();
-  }
-}
-
-/**
- *Compare the angles of the player and the obstacles immediately in front of it to verify if they crush
- */
-void colisiones(Obstacle obstacle1, Player p) {
-  boolean colission=false;
-  for (int i = 0; i < obstacle1.number; i++) {
-    if (abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI) %TWO_PI <= 0.46 ) {
-      colission=true;
-    }
-    if ( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI <= TWO_PI) {
-      if ( abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI)%TWO_PI >= 5.8) {
-        colission=true;
-      }
-    }
-    if (colission) {
-      if ((z-obstacle1.posZ*distanceTunnel)%100 >= 0) {
-        if ( (z-obstacle1.posZ*distanceTunnel)%100 <= 20) {
-          if ( z-obstacle1.posZ*distanceTunnel >= 299) {
-            page = 3;
-          }
-        }
-      }
-    }
   }
 }

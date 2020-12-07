@@ -4,8 +4,8 @@
 class Player {
   //Instances
   color c;
-  float radius;
-  float angle;
+  float radius;//Distance to the origin
+  float angle;//Pos theta with respect to the x-axis
 
   /**
   *Constructor
@@ -21,7 +21,7 @@ class Player {
 
   //Methods
   /**
-   *This method represents the player inside the tunnel
+   *This method draws the player inside the tunnel
    */
   void drawP() {
     translate(width/2, height/2, 300);
@@ -34,7 +34,7 @@ class Player {
   }
 
   /**
-   *This method makes posible to controls the player movement in game with keyboard keys (right and left arrows)
+   *Player movement is controled with keyboard keys (right and left arrows)
    */
   void keyPressed1() {
     if (keyPressed) {
@@ -49,7 +49,7 @@ class Player {
   }
 
   /**
-   *This method makes posible to controls the player movement in game with the mouse
+   *Player movement is controled with the mouse
    */
   void Mouse() {
     if (mousePressed) {

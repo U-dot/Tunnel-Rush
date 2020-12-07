@@ -1,14 +1,14 @@
 //Global variables
 int z = 0, page = 1, theta = 1;
-int distanceTunnel = 100;
-int sidesTunnel = 8; //Poligon number of sides
+int distanceTunnel = 100;//Distance within each polygon of the tunnel
+int sidesTunnel = 8; //Number of sides of the tunnel
 int playerRadius; //Player movement ratio
 int playerSize = 10;
 int lengthTunnel = 20;
-int controlsPosX = 0, controlsPosY = 0;
-int numberControls = 8;
+int controlsPosX = 0, controlsPosY = 0;//pos for controls page
+int numberControls = 8;//Number of controls in controls page
 int[] controls = new int[numberControls];
-int mode = 0;
+int mode = 0;// Game mode 0=1player or 1=2players
 PFont font;
 ArrayList<Obstacle> obstacles;
 Player P1, P2;
@@ -19,15 +19,14 @@ void setup() {
   rectMode(CENTER);
   playerRadius = height/10;
   obstacles = new ArrayList<Obstacle>();
-  P1 = new Player(playerRadius, 0, color(int(random(255)), int(random(255)), int(random(255))));
-  P2 = new Player(playerRadius, PI, color(int(random(255)), int(random(255)), int(random(255))));
+  P1 = new Player(playerRadius, 0, color(150,200,100));
+  P2 = new Player(playerRadius, PI, color(100,150,200));
   font = createFont("data-latin.ttf", width/18);
 }
 
 void draw() {
   background(20);
   pageSelector();
-  println(mode);
 }
 
 void keyPressed() {
@@ -41,10 +40,10 @@ void keyPressed() {
         resetGame();
       }
     }
-    if (key == 'h' || key == 'H') {
+    if (key == 'i' || key == 'I') {
       page = 5;
     }
-    if (key == 'c' || key == 'C') {
+    if (key == 's' || key == 'S') {
       page = 6;
     }
   }
@@ -95,8 +94,8 @@ void introPage() {
   int numberLines = 11;
   text("TUNNEL RUSH", width/2, height/3);
   text("PRESS ENTER TO PLAY", width/2, height*8/numberLines);
-  text("Press H to go to HOW TO PLAY", width/2, height*9/numberLines);
-  text("Press C to go to Controls", width/2, height*10/numberLines);
+  text("Press I to go to instructions", width/2, height*9/numberLines);
+  text("Press S to go to settings", width/2, height*10/numberLines);
 }
 
 void gamePage() {
@@ -152,22 +151,25 @@ void gameOverPage() {
 }
 
 void helpPage() {
-  text("HOW TO PLAY", width/2, height/4);
-  text("Player 1: left and right arrows \nPlayer 2: mouse buttons.\n Press SPACE to go faster. \nGo through the tunnel without \ncrushing with any obstacle.\n Enjoy The game :)", 
+  text("Instructructions", width/2, height/4);
+  text("Player 1: left/right arrows \nPlayer 2: mouse buttons."
+        +"\n Press SPACE to go faster. \nGo through the tunnel without"
+        +"\ncrashing into any obstacle.\n Happy gaming :3",
     width/2, height*2/4-60);
   text("Press ENTER to play", width/2, height*3/4+60);
-  text("Press C to change controls", width/2, height-40);
+  text("Press S to go to Settings", width/2, height-40);
 }
 
 void victoryPage() {
-  text("YOU WON", width/2, height/10);
+  text("VICTORY", width/2, height/10);
   text("Distance", width/3, height*2/10);
   text(lengthTunnel, width*2/3, height*2/10);
   text("Number of players", width/3, height*3/10);
   text(controls[1]+1, width*2/3, height*3/10);
   text("Thanks for playing", width/2, height*5/10);
   text("Press ENTER to play", width/2, height*7/10);
-  text("Press C to change controls", width/2, height*8/10);
+  text("Press S to go to settings", width/2, height*8/10);
+  text("Press I to go to instructions", width/2, height*9/10);
 }
 
 void controlPage() {
@@ -223,10 +225,10 @@ void controlPage() {
   rect(width*2.5/3, height*6/numberLines, rectWidth, rectHeight*3);
   pop();
   if (controlsPosY <= 1) {
-    line(width*2/3-10, height/numberLines*(controlsPosY+3)+5, 
+    line(width*2/3-10, height/numberLines*(controlsPosY+3)+5,
       width*2/3+10, height/numberLines*(controlsPosY+3)+5);
   } else {
-    line(width*2/3-10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5, 
+    line(width*2/3-10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5,
       width*2/3+10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5);
   }
 
