@@ -86,15 +86,15 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
 
    ## Trabajo a futuro
 
-     Para un trabajo futuro se podría en implementar:
+   Para un trabajo futuro se podría en implementar:
 
-     + Un modo PVP manejando 2 cámaras a media pantalla.
+   + Un modo PVP manejando 2 cámaras a media pantalla.
 
-     + Rotación de los obstáculos.
+   + Rotación de los obstáculos.
 
-     + Trayectoria no lineal del túnel.
+   + Trayectoria no lineal del túnel.
 
-     + Poder jugar en el lado exterior del túnel.
+   + Poder jugar en el lado exterior del túnel.
 
 ## Conclusiones
 
