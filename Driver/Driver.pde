@@ -267,7 +267,7 @@ void resetGame() {//resets game variables
   }
   controlsPosX = 0;//Asignates variables be able to change them
   controlsPosY = 0;
-  controls[0] = lengthTunnel/5;
+  controls[0] = lengthTunnel/15;
   controls[1] = mode;
   controls[2] = int((P1.c >> 16 & 0xFF)/15);
   controls[3] = int((P1.c >> 8 & 0xFF)/15);
