@@ -14,7 +14,10 @@ Cuando se oprime:
 
   #### ´mousePressed´;
   El jugador (2) rota hacia la izquierda o derecha dentro del túnel, respectivamente.
-  
+
+## Páginas
+  En la pestaña Driver.pde se encuentran un grupo de funciones `Pages()`, las cuales están divididas en `introPage()`, `gamePage()`, `gameOverPage()`,  `victoryPage()`, `helpPage()` y `controlPage()`. En cuál de estas página se encuentre el jugador es controlado por la función `pageSelector()`, la cual posee un   caso de un `switch` por cada función antes mencionada y el uso de `keys` especificadas en `introPage()` pasar de una página a otra. La función `controlPage()`     es la encargada del manejo de los controles y modos de juego, junto con la opción de cambiar el color de los jugadores.
+
 ## Representación del túnel
 
 Este juego representa el túnel como una función y a los jugadores y los obstaculos mediante las clases Player y Obstacles, respectivamente.
