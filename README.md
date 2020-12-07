@@ -31,11 +31,6 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
   Para lograrlo dibuja cada `distaceTunnel` pixeles en el eje z se usa un n-polígono regular con profundidad usando la función `polygon3D(...)`, que a su vez usa   la función `polygon(...)` para crear dicho n-polígono regular.
   Dicha función fue creada a partir del ejemplo de Processing  de [polígonos regulares](https://processing.org/examples/regularpolygon.html).
 
-## Manejo de colisiones
-  Mediante la función `wreck(...)`, la cual recibe de parámetros un objeto `Obstacles` y un objeto `Player`.
-
-  Esta función compara los angulos de cada uno de los objetos y determina mediante su resta si existe una colision entre ellos o no. En caso positivo, aparecerá     en pantalla la `gameOverPage()`, y en caso negativo el o los jugadores seguirán jugando, y el objeto dejado atrás será borrado y procederá a realizar el mismo     proceso con el siguiente obstáculo.
-
 ## Clase `Player`
   Esta clase es la encargada de crear a cada jugador y colocarlos dentro del túnel. Cada jugador tiene 3 atributos:
 
@@ -83,8 +78,13 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
    + `display()` Dibuja el obstáculo en el túnel
 
    Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad usando la función `polygon3D(...)`.
+   
+## Manejo de colisiones
+  Mediante la función `wreck(...)`, la cual recibe de parámetros un objeto `Obstacles` y un objeto `Player`.
 
-   ## Trabajo a futuro
+  Esta función compara los ángulos de cada uno de los objetos y determina mediante su resta si existe una colision entre ellos o no. En caso positivo, aparecerá     en pantalla la `gameOverPage()`, y en caso negativo el o los jugadores seguirán jugando, y el objeto dejado atrás será borrado y procederá a realizar el mismo     proceso con el siguiente obstáculo.
+
+## Trabajo a futuro
 
    Para un trabajo futuro se podría pensar en implementar:
 
