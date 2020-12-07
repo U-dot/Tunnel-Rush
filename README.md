@@ -86,11 +86,11 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
 
    ## Trabajo a futuro
 
-   Para un trabajo futuro se podría en implementar:
+   Para un trabajo futuro se podría pensar en implementar:
 
-   + Un modo PVP manejando 2 cámaras a media pantalla.
+   + Un modo PVP manejando 2 cámaras a media pantalla, donde estas se muevan junto con el jugador.
 
-   + Rotación de los obstáculos.
+   + Rotación aleatoria de los obstáculos.
 
    + Trayectoria no lineal del túnel.
 
@@ -98,9 +98,11 @@ Para este proyecto contamos con el modo de 1 y de 2 jugadores en un mismo túnel
 
 ## Conclusiones
 
-  En este proyecto, el uso de Programación Orientada a Objetos fue clave para la representación de todos los obstáculos en el túnel al mismo tiempo.
+  En este proyecto, el uso de la Programación Orientada a Objetos fue clave para la representación de todos los obstáculos en el túnel al mismo tiempo.
 
   Además, permite que el jugador sea manipulado con mayor facilidad y menor peligro de corromper su información.
+  
+  Todo esto junto con la facilidad que brinda el poder extraer los valores de los ángulos y la posición en z tanto del jugador como de los objetos, lo cual, a su   vez, permite encontrar una forma muy efectiva e intuitiva de verificar la colisión cada vez que se pueda presentar.
 
   Realizar un juego es una manera de entretenida de aplicar el paradigma de Programación Orientada a Objetos.
 
