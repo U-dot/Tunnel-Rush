@@ -83,7 +83,7 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness, boole
  *Compares the angles of the players and the obstacles immediately in
  *front of them to verify if they crash
  */
-void colisiones(Obstacle obstacle1, Player p) {
+void wreck(Obstacle obstacle1, Player p) {
   boolean colission=false;
   for (int i = 0; i < obstacle1.number; i++) {
     if (abs(obstacle1.oba[i]%TWO_PI - radians(p.angle)%TWO_PI) %TWO_PI <= 0.46 ) {
