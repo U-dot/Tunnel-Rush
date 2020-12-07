@@ -91,11 +91,10 @@ void pageSelector() {//Escoge la página
 void introPage() {
   drawTunnel();
   textFont(font);
-  int numberLines = 11;
   text("TUNNEL RUSH", width/2, height/3);
-  text("PRESS ENTER TO PLAY", width/2, height*8/numberLines);
-  text("Press I to go to instructions", width/2, height*9/numberLines);
-  text("Press S to go to settings", width/2, height*10/numberLines);
+  text("PRESS ENTER TO PLAY", width/2, height*8/11);
+  text("Press I to go to instructions", width/2, height*9/11);
+  text("Press S to go to settings", width/2, height*10/11);
 }
 
 void gamePage() {
@@ -125,12 +124,11 @@ void gamePage() {
     }
   }
   if (z > (lengthTunnel+4)*distanceTunnel) {
-    page = 4;
+    page = 4;//victory page
   }
-  z += 2;
+  z += 2;//Pos in z
   if (keyPressed) {
     if (keyCode == LEFT) {
-      //difTunnelPVP++;
       theta++;
     } else if (keyCode == RIGHT) {
       //difTunnelPVP--;
@@ -173,6 +171,7 @@ void victoryPage() {
 }
 
 void controlPage() {
+  //Stops variables from being out of bounds
   if (controlsPosY < 0) {
     controlsPosY = numberControls - 1;
   } else if (controlsPosY >= numberControls) {
@@ -192,6 +191,8 @@ void controlPage() {
       controls[i] = 16;
     }
   }
+  
+  //Just text and graphs
   stroke(255);
   int numberLines = 10;
   float rectWidth = width/13, rectHeight = height/40;
@@ -231,16 +232,17 @@ void controlPage() {
     line(width*2/3-10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5,
       width*2/3+10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5);
   }
-
   text("Press ENTER to play", width/2, height*8/numberLines);
   text("Press H to go to HOW TO PLAY", width/2, height*9/numberLines);
+  
+  //Reassignates variables
   lengthTunnel = controls[0]*10;
   mode = controls[1];
   P1.c = color(controls[2]*15, controls[3]*15, controls[4]*15);
   P2.c = color(controls[5]*15, controls[6]*15, controls[7]*15);
 }
 
-void resetGame() {
+void resetGame() {//resets game variables
   z = 0;
   P1 = new Player(playerRadius, 0, P1.c);
   P2 = new Player(playerRadius, PI, P2.c);
@@ -254,7 +256,7 @@ void resetGame() {
     angle = random(TWO_PI);
     obstacles.add(new Obstacle(i*2, angle, typePoly, numberPoly));
   }
-  controlsPosX = 0;
+  controlsPosX = 0;//Asignates variables be able to change them
   controlsPosY = 0;
   controls[0] = lengthTunnel/5;
   controls[1] = mode;

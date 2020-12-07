@@ -56,7 +56,7 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness, boole
   if (cover) {//Puts a cover on
     polygon(size, type);
   } else {
-    //fill(0);
+    fill(0);
     rotate(TWO_PI/sidesTunnel);//To adjust tunnel
   }
   float sx, sy, a=0;
