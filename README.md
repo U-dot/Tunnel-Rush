@@ -15,7 +15,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
   #### &larr; &rarr;
   El jugador (1) rota hacia la izquierda o derecha dentro del túnel, respectivamente.
 
-  #### `mousePressed`
+  #### `mousePressed()`
   El jugador (2) rota hacia la izquierda o derecha dentro del túnel, respectivamente.
 
 ## Modos de juego
@@ -42,7 +42,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
    + Distancia al origen `radius`.
 
-   + Coordenada theta respecto al eje x `angle`.
+   + Ángulo o coordenada theta respecto al eje x `angle`.
 
   Y tiene 3 métodos:
 
@@ -61,7 +61,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
    + Distancia al origen `radius`.
 
-   + Coordenada theta respecto al eje x `angle`.
+   + Ángulo o coordenada theta respecto al eje x `angle`.
 
    + Posición en lo largo del túnel `posZ`
 
@@ -85,10 +85,19 @@ en programación orientada a objetos en [processing](https://processing.org/). P
    
    ![Construcción obstáculos](https://user-images.githubusercontent.com/71671790/101383343-00cb5c80-3887-11eb-832e-8426b8b6b7c9.png)
    
-## Manejo de colisiones
-  El manejo de las colisiones es controlado mediante la función `wreck(...)`, la cual recibe de parámetros un objeto `Obstacles` y un objeto `Player`.
+## Colisión entre el jugador y los obstáculos
+  Dicha colisión se revisa a través de la función `wreck(Obstacle obstacle1, Player p)` que hace lo siguiente:
 
-  Esta función compara los ángulos de cada uno de los objetos y determina mediante su resta si existe una colision entre ellos o no. En caso positivo, aparecerá     en pantalla la `gameOverPage()`, y en caso negativo el o los jugadores seguirán jugando, y el objeto dejado atrás será borrado y procederá a realizar el mismo     proceso con el siguiente obstáculo.
+  1. Compara el`angle` del jugador con el ángulo de cada uno de los polígonos que forma el obstáculo más cercano. 
+  Si la diferencia entre los ángulos es menor que 0.46 radianes entonces continua al paso 2.
+  
+  2. Compara las posiciones en el el eje z del jugador y el obstáculo. 
+  Si la posición del jugador está a menos de 20 pixeles después del obstáculo, entonces hay colisión y continua al paso 3.
+  En esta comparación hay un desfase equivalente a 300 pixeles para que la colisión sea evidente a los ojos del jugador.
+  
+  
+  3. Si hay colisión, se cambia a la página `gameOverPage()`.
+  Si no hay colisión, el juego continúa y el objeto sobrepasado es borrado.
 
 ## Trabajo a futuro
 
