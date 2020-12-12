@@ -11,9 +11,10 @@ int distanceTunnel = 100;//Distance within each polygon of the tunnel
 int sidesTunnel = 8; //Number of sides of the tunnel
 int playerRadius; //Player movement ratio
 int playerSize = 10;
+int velocity=7;
 int lengthTunnel = 20;
 int controlsPosX = 0, controlsPosY = 0;//pos for controls page
-int numberControls = 8;//Number of controls in controls page
+int numberControls = 9;//Number of controls in controls page
 int[] controls = new int[numberControls];
 int mode = 0;// Game mode 0=1player or 1=2players
 PFont font;
@@ -135,7 +136,7 @@ void gamePage() {
   if (z > (lengthTunnel+4)*distanceTunnel) {
     page = 4;//victory page
   }
-  z += 6;//Pos in z
+  z += velocity;//Pos in z
   if (keyPressed) {
     if (keyCode == LEFT) {
       theta++;
@@ -185,7 +186,9 @@ void controlPage() {
     controlsPosY = numberControls - 1;
   } else if (controlsPosY >= numberControls) {
     controlsPosY = 0;
-  } else if (controls[0] < 0 || controls[0] > 100) {
+  } else if (controls[0] < 0){
+    controls[0]=15;
+  } else if (controls[0] > 20) {
     controls[0] = 0;
   } else if (controls[1] > 1) {
     controls[1] = 0;
@@ -203,7 +206,7 @@ void controlPage() {
 
   //Just text and graphs
   stroke(255);
-  int numberLines = 10;
+  int numberLines = 11;
   float rectWidth = width/13, rectHeight = height/40;
   stroke(255);
   text("Game controls stack", width/2, height/numberLines);
@@ -234,6 +237,8 @@ void controlPage() {
   fill(P2.c);
   rect(width*2.5/3, height*6/numberLines, rectWidth, rectHeight*3);
   pop();
+  text("Speed:", width/3, height*7/numberLines);
+  text(velocity, width*2/3, height*7/numberLines);
   if (controlsPosY <= 1) {
     line(width*2/3-10, height/numberLines*(controlsPosY+3)+5,
       width*2/3+10, height/numberLines*(controlsPosY+3)+5);
@@ -241,12 +246,13 @@ void controlPage() {
     line(width*2/3-10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5,
       width*2/3+10, height/numberLines*(int((controlsPosY+1)/3)+4)+((controlsPosY+1)%3-1)*rectHeight+5);
   }
-  text("Press ENTER to play", width/2, height*8/numberLines);
-  text("Press I to go to instructions", width/2, height*9/numberLines);
+  text("Press ENTER to play", width/2, height*9/numberLines);
+  text("Press I to go to instructions", width/2, height*10/numberLines);
 
   //Reassignates variables
   lengthTunnel = controls[0]*10;
   mode = controls[1];
+  velocity=controls[8];
   P1.c = color(controls[2]*15, controls[3]*15, controls[4]*15);
   P2.c = color(controls[5]*15, controls[6]*15, controls[7]*15);
 }
@@ -267,7 +273,7 @@ void resetGame() {//resets game variables
   }
   controlsPosX = 0;//Asignates variables be able to change them
   controlsPosY = 0;
-  controls[0] = lengthTunnel/15;
+  controls[0] = lengthTunnel/10;
   controls[1] = mode;
   controls[2] = int((P1.c >> 16 & 0xFF)/15);
   controls[3] = int((P1.c >> 8 & 0xFF)/15);
@@ -275,4 +281,5 @@ void resetGame() {//resets game variables
   controls[5] = int((P2.c >> 16 & 0xFF)/15);
   controls[6] = int((P2.c >> 8 & 0xFF)/15);
   controls[7] = int((P2.c & 0xFF)/15);
+  controls[8] = velocity;
 }
