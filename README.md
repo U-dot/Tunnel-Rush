@@ -32,7 +32,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
   En este juego se representa el túnel utilizando la función `drawTunnel()`.
 
-  Para lograrlo, esta función dibuja cada `distaceTunnel` pixeles un n-polígono regular con profundidad en el eje z llamando a la función `polygon3D(...)`, que a   su vez usa la función `polygon(...)` para crear dichos n-polígonos regulares.
+  Para lograrlo, esta función dibuja cada `distaceTunnel` pixeles un n-polígono regular con profundidad en el eje Z llamando a la función `polygon3D(...)`, que a   su vez usa la función `polygon(...)` para crear dichos n-polígonos regulares.
   Dicha función fue creada a partir del ejemplo de Processing  de [polígonos regulares](https://processing.org/examples/regularpolygon.html).
 
 ## Clase `Player`
@@ -42,7 +42,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
    + Distancia al origen `radius`.
 
-   + Ángulo o coordenada theta respecto al eje x `angle`.
+   + Ángulo o coordenada theta respecto al eje X `angle`.
 
   Y tiene 3 métodos:
 
@@ -61,7 +61,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
    + Distancia al origen `radius`.
 
-   + Ángulo o coordenada theta respecto al eje x `angle`.
+   + Ángulo o coordenada theta respecto al eje X `angle`.
 
    + Posición en lo largo del túnel `posZ`
 
@@ -79,11 +79,12 @@ en programación orientada a objetos en [processing](https://processing.org/). P
 
    + `display()` Dibuja el obstáculo en el túnel
 
-   Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad o extensión usando la función `polygon3D(...)`.
+   Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad o extensión usando la función `polygon3D(...)`, repartidos equitativamente en la circunferencia.
    
-   En la imagen se puede ver la construcción de un obstáculo de 4 polígonos de 4 lados.
+   En la imagen se puede ver la construcción por detrás de un obstáculo de 4 polígonos de 4 lados.
    
-   ![Construcción obstáculos](https://user-images.githubusercontent.com/71671790/101383343-00cb5c80-3887-11eb-832e-8426b8b6b7c9.png)
+   <img src="https://user-images.githubusercontent.com/71671790/101383343-00cb5c80-3887-11eb-832e-8426b8b6b7c9.png" width="400">
+   
    
 ## Colisión entre el jugador y los obstáculos
   Dicha colisión se revisa a través de la función `wreck(Obstacle obstacle1, Player p)` que hace lo siguiente:
@@ -91,13 +92,18 @@ en programación orientada a objetos en [processing](https://processing.org/). P
   1. Compara el`angle` del jugador con el ángulo de cada uno de los polígonos que forma el obstáculo más cercano. 
   Si la diferencia entre los ángulos es menor que 0.46 radianes entonces continua al paso 2.
   
-  2. Compara las posiciones en el el eje z del jugador y el obstáculo. 
+  2. Compara las posiciones en el el eje Z del jugador y el obstáculo. 
   Si la posición del jugador está a menos de 20 pixeles después del obstáculo, entonces hay colisión y continua al paso 3.
   En esta comparación hay un desfase equivalente a 300 pixeles para que la colisión sea evidente a los ojos del jugador.
   
-  
   3. Si hay colisión, se cambia a la página `gameOverPage()`.
   Si no hay colisión, el juego continúa y el objeto sobrepasado es borrado.
+  
+  En la siguiente imagen se ve un ejemplo de un obstáculo compuesto de 2 polígonos cuyo valor de `angle` es aproximadamente 4.53 radianes. La distancia entre cualquiera de los polígonos del obstáculo y el jugador es mayor a 0.46 radianes, es decir, no hay colisión.
+  
+  Nótese que los ángulos son medidos en el sentido de las manecillas del reloj, porque el eje Y en el canvas aumenta hacia abajo.
+  
+  <img src="https://user-images.githubusercontent.com/71671790/101995832-f3eda500-3c9a-11eb-9025-eccaf87c4446.png" width="400">
 
 ## Trabajo a futuro
 
