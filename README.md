@@ -80,29 +80,29 @@ en programación orientada a objetos en [processing](https://processing.org/). P
    + `display()` Dibuja el obstáculo en el túnel
 
    Para dibujar el obstáculo se grafican `number` polígonos de `type` lados con profundidad o extensión usando la función `polygon3D(...)`, repartidos equitativamente en la circunferencia.
-   
+
    En la imagen se puede ver la construcción por detrás de un obstáculo de 4 polígonos de 4 lados.
-   
+
    <img src="https://user-images.githubusercontent.com/71671790/101383343-00cb5c80-3887-11eb-832e-8426b8b6b7c9.png" width="400">
-   
-   
+
+
 ## Colisión entre el jugador y los obstáculos
   Dicha colisión se revisa a través de la función `wreck(Obstacle obstacle1, Player p)` que hace lo siguiente:
 
-  1. Compara el`angle` del jugador con el ángulo de cada uno de los polígonos que forma el obstáculo más cercano. 
+  1. Compara el`angle` del jugador con el ángulo de cada uno de los polígonos que forma el obstáculo más cercano.
   Si la diferencia entre los ángulos es menor que 0.46 radianes entonces continua al paso 2.
-  
-  2. Compara las posiciones en el el eje Z del jugador y el obstáculo. 
+
+  2. Compara las posiciones en el el eje Z del jugador y el obstáculo.
   Si la posición del jugador está a menos de 20 pixeles después del obstáculo, entonces hay colisión y continua al paso 3.
   En esta comparación hay un desfase equivalente a 300 pixeles para que la colisión sea evidente a los ojos del jugador.
-  
+
   3. Si hay colisión, se cambia a la página `gameOverPage()`.
   Si no hay colisión, el juego continúa y el objeto sobrepasado es borrado.
-  
+
   En la siguiente imagen se ve un ejemplo de un obstáculo compuesto de 2 polígonos cuyo valor de `angle` es aproximadamente 4.53 radianes. La distancia entre cualquiera de los polígonos del obstáculo y el jugador es mayor a 0.46 radianes, es decir, no hay colisión.
-  
+
   Nótese que los ángulos son medidos en el sentido de las manecillas del reloj, porque el eje Y en el canvas aumenta hacia abajo.
-  
+
   <img src="https://user-images.githubusercontent.com/71671790/101995832-f3eda500-3c9a-11eb-9025-eccaf87c4446.png" width="400">
 
 ## Trabajo a futuro
@@ -122,7 +122,7 @@ en programación orientada a objetos en [processing](https://processing.org/). P
   En este proyecto, el uso de la Programación Orientada a Objetos fue clave para la representación de todos los obstáculos en el túnel al mismo tiempo.
 
   Además, permite que el jugador sea manipulado con mayor facilidad y menor peligro de corromper su información.
-  
+
   Todo esto junto con la facilidad que brinda el poder extraer los valores de los ángulos y la posición en z tanto del jugador como de los objetos, lo cual, a su   vez, permite encontrar una forma muy efectiva e intuitiva de verificar la colisión cada vez que se pueda presentar.
 
   Realizar un juego es una manera de entretenida de aplicar el paradigma de Programación Orientada a Objetos.

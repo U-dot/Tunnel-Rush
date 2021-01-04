@@ -1,7 +1,5 @@
 /**
  *Tunnel Rush game
- *@author: María Sol Botello
- *@author: Juan Jose Figueroa
  *More info on https://github.com/U-dot/Tunnel-Rush
  */
 
@@ -11,8 +9,9 @@ int distanceTunnel = 100;//Distance within each polygon of the tunnel
 int sidesTunnel = 8; //Number of sides of the tunnel
 int playerRadius; //Player movement ratio
 int playerSize = 10;
-int velocity=7;
+int velocity=5;
 int lengthTunnel = 20;
+int obstaclesInSight = 3;
 int controlsPosX = 0, controlsPosY = 0;//pos for controls page
 int numberControls = 9;//Number of controls in controls page
 int[] controls = new int[numberControls];
@@ -25,7 +24,7 @@ void setup() {
   size(500, 500, P3D);
   textAlign(CENTER);
   rectMode(CENTER);
-  playerRadius = height/10;
+  playerRadius = height/10-playerSize;
   obstacles = new ArrayList<Obstacle>();
   P1 = new Player(playerRadius, 0, color(150,200,100));
   P2 = new Player(playerRadius, PI, color(100,150,200));
@@ -100,6 +99,7 @@ void pageSelector() {
 }
 
 void introPage() {
+  background(0);
   drawTunnel();
   text("TUNNEL RUSH", width/2, height/3);
   text("PRESS ENTER TO PLAY", width/2, height*8/11);
@@ -130,6 +130,11 @@ void gamePage() {
     if ((z - obstacles.get(0).posZ*distanceTunnel)%100 >= obstacles.get(0).deepness + 1) {
       if (z - obstacles.get(0).posZ*distanceTunnel > 299) {
         obstacles.remove(0);
+        int typePoly = int(random(3, 5));
+        int numberPoly = int(random(1, 5));
+        float angle = random(TWO_PI);
+        obstacles.add(new Obstacle(int(z/distanceTunnel)+obstaclesInSight, angle, typePoly, numberPoly));
+
       }
     }
   }
@@ -141,7 +146,6 @@ void gamePage() {
     if (keyCode == LEFT) {
       theta++;
     } else if (keyCode == RIGHT) {
-      //difTunnelPVP--;
       theta--;
     } else if (key == 32) {
       z -= 5;
@@ -187,9 +191,9 @@ void controlPage() {
   } else if (controlsPosY >= numberControls) {
     controlsPosY = 0;
   } else if (controls[0] < 0){
-    controls[0]=15;
-  } else if (controls[0] > 20) {
-    controls[0] = 0;
+    controls[0]=0;
+  } else if (controls[0] >100) {
+    controls[0] = 100;
   } else if (controls[1] > 1) {
     controls[1] = 0;
   } else if (controls[1] < 0) {
@@ -265,7 +269,7 @@ void resetGame() {//resets game variables
   int typePoly = 0;
   int numberPoly = 0;
   float angle = 0;
-  for (int i = 0; i < lengthTunnel/2; i++) {
+  for (int i = 0; i < obstaclesInSight; i++) {
     typePoly = int(random(3, 5));
     numberPoly = int(random(1, 5));
     angle = random(TWO_PI);

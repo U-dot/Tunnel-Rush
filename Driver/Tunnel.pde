@@ -6,7 +6,7 @@ void drawTunnel() {
   translate(width/2, height/2, z);
   stroke(255);
   noFill();
-  for (int i = -3; i <= lengthTunnel; i++) {
+  for (int i = int(z/distanceTunnel)-4; i <= int(z/distanceTunnel)+10; i++) {
     stroke(int(random(255)), int(random(255)), int(random(255)));
     translate(0, 0, -i*distanceTunnel);
     polygon((playerRadius+playerSize), sidesTunnel);
@@ -55,7 +55,7 @@ void polygon3D(float angle1, int type, int radius, int size, int deepness, boole
   }
   if (cover) {
     polygon(size, type);
-  } else if(!cover && (page == 2 || page == 3)) {
+  } else if(!cover) {
     fill(0);
     rotate(TWO_PI/sidesTunnel);
   }
@@ -95,8 +95,8 @@ void wreck(Obstacle obstacle1, Player p) {
       }
     }
     if (colission) {
-      if ((z-obstacle1.posZ*distanceTunnel)%100 >= 0) {
-        if ( (z-obstacle1.posZ*distanceTunnel)%100 <= 20) {
+      if ((z-obstacle1.posZ*distanceTunnel)%distanceTunnel >= 0) {
+        if ( (z-obstacle1.posZ*distanceTunnel)%distanceTunnel <= obstacle1.deepness) {
           if ( z-obstacle1.posZ*distanceTunnel >= 299) {
             page = 3;
           }
