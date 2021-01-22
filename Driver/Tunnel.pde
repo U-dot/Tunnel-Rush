@@ -7,6 +7,7 @@ void drawTunnel() {
   stroke(255);
   noFill();
   for (int i = int(z/distanceTunnel)-4; i <= int(z/distanceTunnel)+10; i++) {
+    if(lengthTunnel*distanceTunnel < i*distanceTunnel){break;}
     stroke(int(random(255)), int(random(255)), int(random(255)));
     translate(0, 0, -i*distanceTunnel);
     polygon((playerRadius+playerSize), sidesTunnel);

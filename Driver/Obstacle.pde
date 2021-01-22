@@ -33,7 +33,7 @@ class Obstacle {
 
   //Methods
   /**
-   *This method calls the function polygon3D() to create the obstacles and set them in order inside the tunnel 
+   *This method calls the function polygon3D() to create the obstacles and set them in order inside the tunnel
    */
   void display() {
     push();

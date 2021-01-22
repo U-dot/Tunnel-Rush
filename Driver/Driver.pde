@@ -11,7 +11,7 @@ int playerRadius; //Player movement ratio
 int playerSize = 10;
 int velocity=5;
 int lengthTunnel = 20;
-int obstaclesInSight = 3;
+int obstaclesInSight = 5;
 int controlsPosX = 0, controlsPosY = 0;//pos for controls page
 int numberControls = 9;//Number of controls in controls page
 int[] controls = new int[numberControls];
@@ -130,11 +130,13 @@ void gamePage() {
     if ((z - obstacles.get(0).posZ*distanceTunnel)%100 >= obstacles.get(0).deepness + 1) {
       if (z - obstacles.get(0).posZ*distanceTunnel > 299) {
         obstacles.remove(0);
-        int typePoly = int(random(3, 5));
-        int numberPoly = int(random(1, 5));
-        float angle = random(TWO_PI);
-        obstacles.add(new Obstacle(int(z/distanceTunnel)+obstaclesInSight, angle, typePoly, numberPoly));
-
+        if(z<(lengthTunnel-obstaclesInSight)*distanceTunnel){
+          int typePoly = int(random(3, 5));
+          int numberPoly = int(random(1, 5));
+          float angle = random(TWO_PI);
+          //Obstacle(int posZ, float angle, int type, int number)
+          obstacles.add(new Obstacle(int(z/distanceTunnel)+obstaclesInSight*2-3, angle, typePoly, numberPoly));
+        }
       }
     }
   }
@@ -190,8 +192,8 @@ void controlPage() {
     controlsPosY = numberControls - 1;
   } else if (controlsPosY >= numberControls) {
     controlsPosY = 0;
-  } else if (controls[0] < 0){
-    controls[0]=0;
+  } else if (controls[0] < 1){
+    controls[0]=1;
   } else if (controls[0] >100) {
     controls[0] = 100;
   } else if (controls[1] > 1) {
